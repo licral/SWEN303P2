@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('browse', {
+router.get('/clothing', function(req, res, next) {
+    res.render('clothing', {
         title: 'Express',
-        page : 'Browse'
+        page : 'Browse Clothing'
     });
 });
 
