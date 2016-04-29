@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title><%= title %> - <%= page %></title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
@@ -15,15 +15,15 @@
 <!-- Page Content -->
 <div class="container" id="login">
     <h1><%= page %></h1>
+	<p align="left">Username</p>
 	<input id="login" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+	<p align="left">Email</p>
+	<input id="login" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+	<p align="left">Password</p>
 	<input id="login" type="text" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
-	<button type="button" class="btn btn-default btn-lg">Log In</button>
-	<div class="checkbox">
-		<label class="login"><input type="checkbox" value="">Remember Me</label>
-	</div>
-	<a href="#">Forgot Password</a>
-	</br>
-	<a href="/register">Don't have an account? Click to sign up!</a>
+	<p align="left">Confirm password</p>
+	<input id="login" type="text" class="form-control" placeholder="Confirm Password" aria-describedby="sizing-addon1">
+	<button type="button" class="btn btn-default btn-lg">Register</button>
 </div>
 </body>
 </html>

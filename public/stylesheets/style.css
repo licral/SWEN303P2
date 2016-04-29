@@ -64,7 +64,7 @@ a {
     background-color: #555 !important;
 }
 
-.progress {background: rgba(245, 245, 245, 1); border: 0px solid rgba(245, 245, 245, 1); border-radius: 4px; height: 20px;}
+.progress {background: rgba(245, 245, 245, 1); border: 0px solid rgba(245, 245, 245, 1); border-radius: 12px; height: 20px;}
 .progress-bar-custom {background: rgba(230, 141, 226, 1);}
 
 .carousel-inner > .item > img,
