@@ -73,3 +73,16 @@ a {
     margin: auto;
 
 }
+
+#login.container{
+	text-align: center;
+	width: 300px;
+}
+
+input#login{
+	margin: 10px 0px 10px 0px;
+}
+
+label.login{
+	line-height: 20px;
+}
