@@ -55,11 +55,11 @@ a {
     background-color: red !important;
 }
 
-.panel {
+.panel-primary {
     border-color: #555 !important;
 }
 
-.panel .panel-heading{
+.panel-primary .panel-heading{
     border-color: #555 !important;
     background-color: #555 !important;
 }
