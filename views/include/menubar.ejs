@@ -1,8 +1,7 @@
 <script>
     $(document).ready(function () {
         var user = getCookie("isLoggedIn");
-        //alert(user);
-        $("#welcomeUser").val("Welcome, " + user);
+
         if (user != "") {
             $("#loggedInButtons").show();
             $("#loggedOutButtons").hide();
@@ -78,10 +77,12 @@
                         </div>
                     </form>
                 </li>
+                <!-- Not logged In -->
                 <ul id="loggedOutButtons" class="nav navbar-nav navbar-right">
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Log in</a></li>
                 </ul>
+                <!-- Logged In -->
                 <ul id="loggedInButtons" class="nav navbar-nav navbar-right">
                     <li> <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>
                     <li> <a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>
