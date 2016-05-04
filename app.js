@@ -12,6 +12,7 @@ var sell = require('./routes/sell');
 var login = require('./routes/login');
 var register = require('./routes/register');
 
+
 var app = express();
 
 // view engine setup

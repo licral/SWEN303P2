@@ -86,3 +86,12 @@ input#login{
 label.login{
 	line-height: 20px;
 }
+
+button.clothes{
+	width: 100%;
+}
+
+.clothes_nav{
+	text-align: center;
+	width: 100%;
+}
