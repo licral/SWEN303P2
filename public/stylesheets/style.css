@@ -87,11 +87,11 @@ label.login{
 	line-height: 20px;
 }
 
-button.clothes{
-	width: 100%;
-}
 
-.clothes_nav{
+/*======= CLOTHING PAGE ========*/
+.clothes{
+	width: 50%;
 	text-align: center;
-	width: 100%;
+	font-size: 150%;
 }
+/*===== CLOTHING PAGE END =====*/
