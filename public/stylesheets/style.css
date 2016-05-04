@@ -86,3 +86,12 @@ input#login{
 label.login{
 	line-height: 20px;
 }
+
+
+/*======= CLOTHING PAGE ========*/
+.clothes{
+	width: 50%;
+	text-align: center;
+	font-size: 150%;
+}
+/*===== CLOTHING PAGE END =====*/
