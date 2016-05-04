@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %> - <%= page %></title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
-    <link rel='stylesheet' href='../stylesheets/style.css'/>
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<head>
+		<title><%= title %> - <%= page %></title>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+		<link rel='stylesheet' href='../stylesheets/style.css'/>
+	</head>
+	<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<!-- Creates the menubar as defined in menubar-src -->
-<% include include/menubar.ejs %>
+	<!-- Creates the menubar as defined in menubar-src -->
+	<% include include/menubar.ejs %>
 
-<!-- Page Content -->
-<div class="container">
-    <h1><%= page %></h1>
+	<!-- Page Content -->
+		<div class="container">
+			<h1><%= page %></h1>
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
-        </div>
-    </div>
-</div>
-</body>
+			<div class="panel-group" id="tech_accordion">
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#tech_accordion" href="#apple">Apple</a>
+					</h4>
+				</div>
+				<div id="apple" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<p>HERE ARE SOME FEATURED APPLE PRODUCTS</p>
+					</div>
+				</div>
+			  </div>
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#tech_accordion" href="#computers">Computers & Tablets</a>
+					</h4>
+				</div>
+				<div id="computers" class="panel-collapse collapse">
+					<div class="panel-body">
+						<p>HERE ARE SOME FEATURED COMPUTERS AND TABLETS</p>
+					</div>
+				</div>
+			  </div>
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#tech_accordion" href="#tv">TV & Audio</a>
+					</h4>
+				</div>
+				<div id="tv" class="panel-collapse collapse">
+				  <div class="panel-body">
+						<p>HERE ARE SOME FEATURED TV AND AUDIO PRODUCTS</p>
+					</div>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</body>
 </html>
