@@ -1,8 +1,47 @@
+<script>
+    $(document).ready(function () {
+        var user = getCookie("isLoggedIn");
+        //alert(user);
+        $("#welcomeUser").val("Welcome, " + user);
+        if (user != "") {
+            $("#loggedInButtons").show();
+            $("#loggedOutButtons").hide();
+            $("#welcomeUser").val("Welcome, " + user);
+
+        } else {
+            $("#loggedInButtons").hide();
+            $("#loggedOutButtons").show();
+        }
+    });
+
+    // function taken from http://www.w3schools.com/js/js_cookies.asp
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function logout() {
+        $.post('/account/logout');
+    }
+</script>
+
+<!-- The actual html code -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -16,32 +55,51 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li class="active"><a href="/browse/clothing">Clothing<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">Technology</a></li>
-						<li><a href="#">Arts and Craft</a></li>
-					</ul>
-				</li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Browse<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="/browse/clothing">Clothing<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Arts and Craft</a></li>
+                    </ul>
+                </li>
                 <li><a href="/sell">Sell</a></li>
                 <li><a href="/">Favourites</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-				<li>
-					<form class="navbar-form">
-						<div class="form-group" style="display:inline;">
-							<div class="input-group" style="display:table;">
-								<input class="form-control" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
-								<span class="input-group-addon" style="width:20px;"><span class="glyphicon glyphicon-search"></span></span>
-							</div>
-						</div>
-					</form>
-				</li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Log in</a></li>
+                <li>
+                    <form class="navbar-form">
+                        <div class="form-group" style="display:inline;">
+                            <div class="input-group" style="display:table;">
+                                <input class="form-control" name="search" placeholder="Search Here" autocomplete="off"
+                                       autofocus="autofocus" type="text">
+                                <span class="input-group-addon" style="width:20px;"><span
+                                            class="glyphicon glyphicon-search"></span></span>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <ul id="loggedOutButtons" class="nav navbar-nav navbar-right">
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Log in</a></li>
+                </ul>
+                <ul id="loggedInButtons" class="nav navbar-nav navbar-right">
+                    <li> <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>
+                    <li> <a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Profile<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="/" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </ul>
-           <!-- /.navbar-collapse -->
+            <!-- /.navbar-collapse -->
         </div>
     </div><!-- /.container-fluid -->
 </nav>
