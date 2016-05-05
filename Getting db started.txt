@@ -1,9 +1,18 @@
+---
+--- PREREQUISITES FOR USING MONGO
+---
+
 --
 -- Start the mongo server
 --
 ./bin/mongod --storageEngine=mmapv1 --dbpath path/to/database
 
 --
--- Import the document
+-- Import the document --- NEED TO IMPORT DATA ON FIRST SETUP ONLY
 --
 ./bin/mongoimport --db <name of database> --collection <name of data> --drop --file <name of data file>
+
+--
+-- Switch to database
+--
+use <name of database>
