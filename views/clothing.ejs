@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %> - <%= page %></title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
-    <link rel='stylesheet' href='../stylesheets/style.css'/>
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<head>
+		<title><%= title %> - <%= page %></title>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+		<link rel='stylesheet' href='../stylesheets/style.css'/>
+	</head>
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<!-- Creates the menubar as defined in menubar-src -->
-<% include include/menubar.ejs %>
+		<!-- Creates the menubar as defined in menubar-src -->
+		<% include include/menubar.ejs %>
 
-<!-- Page Content -->
-<div class="container">
-    <h1><%= page %></h1>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
-        </div>
-    </div>
-</div>
-</body>
+		<!-- Page Content -->
+		<div class="container">
+			<% include include/carousel.ejs %>
+			
+			<h1><%= page %></h1>
+			
+			<ul class="nav nav-tabs">
+				<li class="active clothes"><a data-toggle="tab" href="#womens">Womens</a></li>
+				<li class="clothes"><a data-toggle="tab" href="#mens">Mens</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div id="womens" class="tab-pane fade in active">
+					<h3>BROWSE WOMENS CLOTHING</h3>
+					<% include include/womens_clothing.ejs %>
+				</div>
+				<div id="mens" class="tab-pane fade">
+					<h3>BROWSE MENS CLOTHING</h3>
+					<% include include/mens_clothing.ejs %>
+				</div>
+			 </div>
+		</div>
+	</body>
 </html>

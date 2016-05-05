@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %> - <%= page %></title>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+		<link rel='stylesheet' href='../stylesheets/style.css'/>
+	</head>
+	<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<!-- Creates the menubar as defined in menubar-src -->
+	<% include include/menubar.ejs %>
+
+	<!-- Page Content -->
+		<div class="container">
+			<% include include/carousel.ejs %>
+			<h1><%= page %></h1>
+
+			<div class="panel-group" id="arts_accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#arts_accordion" href="#fibre">Fibre & Textile Art</a>
+						</h4>
+					</div>
+					<div id="fibre" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<p>HERE ARE SOME FEATURED FIBRE AND TEXTILE ART</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#arts_accordion" href="#food_craft">Food Craft Supplies</a>
+						</h4>
+					</div>
+					<div id="food_craft" class="panel-collapse collapse">
+						<div class="panel-body">
+							<p>HERE ARE SOME FEATURED FOOD CRAFT SUPPLIES</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#arts_accordion" href="#general">General Supplies</a>
+						</h4>
+					</div>
+					<div id="general" class="panel-collapse collapse">
+					  <div class="panel-body">
+							<p>HERE ARE SOME FEATURED GENERAL SUPPLIES</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

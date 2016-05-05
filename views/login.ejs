@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %> - <%= page %></title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
-    <link rel='stylesheet' href='stylesheets/style.css'/>
+	<title><%= title %> - <%= page %></title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+	<link rel='stylesheet' href='stylesheets/style.css'/>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<script>
+	function logUserIn(){
+		var user = $("#loginUser").val();
+		var password = $("#loginPassword").val();
+		$.post('/account/validate?username=' + user + '&password=' + password,
+				function(data) {
+					if (data == "true") {
+						window.location.href = "/";
+					} else {
+						$("#errorMsg").show();
+					}
+				}
+		);
+	}
+</script>
 <!-- Creates the menubar as defined in menubar-src -->
 <% include include/menubar.ejs %>
 
 <!-- Page Content -->
 <div class="container" id="login">
     <h1><%= page %></h1>
+	<div class="panel panel-danger" id="errorMsg" hidden="true">
+		<div class="panel-heading">Warning</div>
+		<div class="panel-body">
+			<p>Either the username or the password is incorrect</p>
+		</div>
+	</div>
 	<p align="left">Username</p>
-	<input id="login" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+	<input id="loginUser" type="text" class="form-control" aria-describedby="sizing-addon1">
 	<p align="left">Password</p>
-	<input id="login" type="text" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
-	<button type="button" class="btn btn-default btn-lg">Log In</button>
+	<input id="loginPassword" type="text" class="form-control" aria-describedby="sizing-addon1">
+	<button type="button" class="btn btn-default btn-lg" onclick="logUserIn();">Log In</button>
 	<div class="checkbox">
 		<label class="login"><input type="checkbox" value="">Remember Me</label>
 	</div>
