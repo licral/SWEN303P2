@@ -5,14 +5,65 @@
 --
 -- Start the mongo server
 --
-./bin/mongod --storageEngine=mmapv1 --dbpath path/to/database
+mongod --storageEngine=mmapv1 --dbpath path/to/database
+
+This will start the mongodb server. You can also use ./mongo instead if it's not included in the path.
+e.g. mongod --storageEngine=mmapv1 --dbpath /project/data
 
 --
--- Import the document --- NEED TO IMPORT DATA ON FIRST SETUP ONLY
+-- Import the document --- OPTIONAL
 --
-./bin/mongoimport --db <name of database> --collection <name of data> --drop --file <name of data file>
+mongoimport --db <name of database> --collection <name of data> --drop --file <name of data file>
+
+This will import a set of data from a document. This is optional as you only need this when making a new database and you want to fill it with some preset data. You can also use ./mongoimport instead if it's not included in the path.
+e.g. mongoimport --db test_database --collection usercollection --drop --file data_file.json
 
 --
 -- Switch to database
 --
 use <name of database>
+
+This will tell mongodb to use the specified database. Doesn't really matter if it doesn't exist yet
+e.g. use test_database
+
+---
+--- COMMON COMMANDS
+---
+
+--
+-- Insert
+--
+db.<collection>.insert(<data>)
+
+This will insert the data into the database in the specified collection
+e.g. 
+db.usercollection.insert(
+  { "username" : "testuser1", 
+    "email" : "testuser1@testdomain.com" 
+  }
+)
+NOTE: 
+- Doesn't matter if you add new lines or extra spaces
+- You can make an array with multiple items and insert them
+  e.g. 
+  newstuff = [
+    { "username" : "testuser2", 
+      "email" : "testuser2@testdomain.com" 
+    }, 
+    { 
+      "username" : "testuser3", 
+      "email" : "testuser3@testdomain.com" 
+    }
+  ]
+  db.usercollection.insert(newstuff);
+  
+--
+-- Find
+--
+db.<collection>.find()
+
+This will return all the data from the database within the collection
+e.g. db.usercollection.find()
+NOTE: 
+- Append .pretty() for a more human readable format
+  e.g. db.usercollection.find().pretty()
