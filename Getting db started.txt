@@ -1,0 +1,9 @@
+--
+-- Start the mongo server
+--
+./bin/mongod --storageEngine=mmapv1 --dbpath path/to/database
+
+--
+-- Import the document
+--
+./bin/mongoimport --db <name of database> --collection <name of data> --drop --file <name of data file>
