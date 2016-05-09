@@ -1,0 +1,12 @@
+{
+	"item" : {
+		"title" : "Some title",
+		"description" : "Some description",
+		"price" : 20.20,
+		"image" : "some image",
+		"user" : "user name (person who uploaded it)",
+		"timestamp" : "some time stamp",
+		"stock" : 2,
+		"category" : ["category1", "category2"]
+	}
+}
