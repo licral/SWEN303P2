@@ -9,27 +9,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
-	function registerUser() {
-		var ids = ["#regFirstName", "#regLastName", "#regUsername", "#regPassword", "#regConfirm"];
-		foundAnError = false;
-		for (i = 0; i < ids.length; i++) {
-			if ($(ids[i]).val().length == 0) {
-				$(ids[i]).css({"background-color": 'LightPink'});
-				foundAnError = true;
-			} else
-				$(ids[i]).css({"background-color": 'White'});
-		}
-		if (foundAnError){
-			$("#errorMsg").show();
-		} else {
-			// register new user
-			window.location.href = "/";
-		}
-	}
+    function registerUser() {
+        var ids = ["#regFirstName", "#regLastName", "#regUsername", "#regPassword", "#regConfirm"];
+        foundAnError = false;
+        for (i = 0; i < ids.length; i++) {
+            if ($(ids[i]).val().length == 0) {
+                $(ids[i]).css({"background-color": 'LightPink'});
+                foundAnError = true;
+            } else
+                $(ids[i]).css({"background-color": 'White'});
+        }
+        if (foundAnError) {
+            $("#errorMsg").show();
+        } else {
+            // register new user
+            $.post('/account/register?firstname=' + $(ids[0]).val() +
+                    '&lastname=' + $(ids[1]).val() +
+                    '&username=' + $(ids[2]).val() +
+                    '&password=' + $(ids[3]).val(), function(data) {
+                if (data == "true") {
+                    window.location.href = "/";
+                } else {
+                    $("#errorMsg").show();
+                }
+            });
+        }
+    }
 
-	function startedTyping(id) {
-		$(id).css({"background-color": 'White'});
-	}
+    function startedTyping(id) {
+        $(id).css({"background-color": 'White'});
+    }
 </script>
 
 <!-- Creates the menubar as defined in menubar-src -->
@@ -37,25 +46,30 @@
 
 <!-- Page Content -->
 <div class="container" id="login">
-	<h1><%= page %></h1>
-	<div class="panel panel-danger" id="errorMsg" hidden="true">
-		<div class="panel-heading">Warning</div>
-		<div class="panel-body">
-			<p>Please fill in the highlighted fields</p>
-		</div>
-	</div>
+    <h1><%= page %></h1>
+    <div class="panel panel-danger" id="errorMsg" hidden="true">
+        <div class="panel-heading">Warning</div>
+        <div class="panel-body">
+            <p>Please fill in the highlighted fields</p>
+        </div>
+    </div>
 
-	<p align="left">First name</p>
-	<input id="regFirstName" type="text" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(regFirstName)">
-	<p align="left">Last name</p>
-	<input id="regLastName" type="text" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(regLastName)">
-	<p align="left">Username</p>
-	<input id="regUsername" type="text" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(regUsername)">
-	<p align="left">Password</p>
-	<input id="regPassword" type="text" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(regPassword)">
-	<p align="left">Confirm password</p>
-	<input id="regConfirm" type="text" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(regConfirm)">
-	<button type="button" class="btn btn-default btn-lg" onclick="registerUser();">Register</button>
+    <p align="left">First name</p>
+    <input id="regFirstName" type="text" class="form-control" aria-describedby="sizing-addon1"
+           onkeypress="startedTyping(regFirstName)">
+    <p align="left">Last name</p>
+    <input id="regLastName" type="text" class="form-control" aria-describedby="sizing-addon1"
+           onkeypress="startedTyping(regLastName)">
+    <p align="left">Username</p>
+    <input id="regUsername" type="text" class="form-control" aria-describedby="sizing-addon1"
+           onkeypress="startedTyping(regUsername)">
+    <p align="left">Password</p>
+    <input id="regPassword" type="text" class="form-control" aria-describedby="sizing-addon1"
+           onkeypress="startedTyping(regPassword)">
+    <p align="left">Confirm password</p>
+    <input id="regConfirm" type="text" class="form-control" aria-describedby="sizing-addon1"
+           onkeypress="startedTyping(regConfirm)">
+    <button type="button" class="btn btn-default btn-lg" onclick="registerUser();">Register</button>
 </div>
 
 </body>

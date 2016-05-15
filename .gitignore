@@ -35,6 +35,3 @@ jspm_packages
 
 # IDE config
 .idea
-.idea/runConfigurations/bin_www.xml
-.idea/workspace.xml
-ide.general.xml

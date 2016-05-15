@@ -69,7 +69,7 @@ a {
 
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-    width: 25%;
+    height: 300px;
     margin: auto;
 
 }
