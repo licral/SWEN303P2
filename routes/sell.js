@@ -14,24 +14,24 @@ module.exports = router;
 
 
 // var Listing = new Schema({
-// ID : Number
 // Seller : ObjectId
 // ItemName : String
 // Category : ObjectId
 // Price : Number
+// Quanitity : Number
 // Date : Date
 // Photograph : ObjectId?
 // Description : String
 // });
 
 // app.post('/sell', function(req, res){
-//     new Listing({
-//         ID : // randomly generated? #entry in DB?
+//     new Item({
 //         Seller  : (get username)
 //         ItemName : req.body.sellItemName
 //         Category : req.body.category
 //         Price   : req.body.sellPrice
-//         Date : (get date)
+//         Quantity : req.body.quantity
+//         Date : new Date()
 //         Photograph : (get photo???)
 //         Description : req.body.itemDescription
 //
