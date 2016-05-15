@@ -47,6 +47,9 @@ router.post('/validate', function (req, res) {
 
 });
 
+/**
+ * NOTE: logout doesn't work on fire fox
+ **/
 router.post('/logout', function (req, res) {
     res.clearCookie('isLoggedIn');
     res.send("done");
