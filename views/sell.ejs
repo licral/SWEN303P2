@@ -38,7 +38,7 @@
         $("#carousel").hide();
 
 
-    }
+    })
 </script>
 
 <!-- Creates the menubar as defined in menubar-src -->
@@ -93,6 +93,11 @@
 </div>
 
     <div class="row">
+        <p align="left">Quantity</p>
+        <input id="quantity" type="number" min="1" data-bind="value:replyNumber" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(quantity)" name="quantity">
+    </div>
+
+    <div class="row">
 	<p align="left">Item description</p>
     <textarea id="itemDescription" rows="3" class="form-control" placeholder="Type your item description here" aria-describedby="sizing-addon1" onkeypress="startedTyping(itemDescription)" name="itemDescription"></textarea>
     </div>
@@ -108,3 +113,4 @@
 </div>
 </form>
     </div>
+</body>
