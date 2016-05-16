@@ -17,6 +17,12 @@ var url = 'mongodb://localhost:27017/SWEN303';
 The website should now be able to connect to the database
 *///////////////////////////////////////////////////////////////////////////////////
 
+router.get('/', function (req, res) {
+    res.render('account', {
+        title: 'Express',
+        page : 'Account'
+    });
+});
 
 
 // This method doesn't display a page, rather it tries to log in a member
