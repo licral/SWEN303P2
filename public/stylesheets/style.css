@@ -95,3 +95,21 @@ label.login{
 	font-size: 150%;
 }
 /*===== CLOTHING PAGE END =====*/
+
+/*========== SELL PAGE ===========*/
+.left{
+    float: left;
+    margin-right: 20px;
+}
+
+.left-pane{
+    width: 40%;
+}
+
+.submit{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    clear: left;
+}
+/*======== SELL PAGE END ========*/
