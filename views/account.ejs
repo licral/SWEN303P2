@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %> - <%= page %></title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='stylesheets/style.css'/>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="../Scripts/scripts.js"></script>
+
+<!-- Creates the menubar as defined in menubar-src -->
+<% include include/menubar.ejs %>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1><%= page %></h1>
+        </div>
+
+        <div class="panel-body" style="padding-left: 0px; padding-top: 0px; padding-bottom: 0px;">
+            <ul class="nav navbar-default nav-stacked col-md-1" style="width: auto;">
+                <li class="active" aria-selected="true"><a data-toggle="tab" href="#home">Statistics</a></li>
+                <li><a data-toggle="tab" href="#menu1">My Products</a></li>
+                <li><a data-toggle="tab" href="#menu2">Purchase History</a></li>
+            </ul>
+            <div class="tab-content col-md-2">
+                <div id="home" class="tab-pane fade in active">
+                    <% include include/accountStats.ejs %>
+
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <h3>My Products</h3>
+                    <p>Some content in menu 2.</p>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <h3>Purchase History</h3>
+                    <p>Some content in menu 1.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

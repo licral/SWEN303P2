@@ -7,6 +7,28 @@
 		"user" : "user name (person who uploaded it)",
 		"timestamp" : "some time stamp",
 		"stock" : 2,
-		"category" : ["category1", "category2"]
+		"user": "the user who uploaded the item",
+		"category" : ["category1", "category2"],
+		"reviews" : ["review1", "review2"]
+	},
+
+	"users" : {
+		"username" : "user name",
+		"password" : "password",
+		"firstname" : "first name",
+		"lastname" : "last name",
+		"bank_Account" : 12345678,
+		"previous_Purchases": ["item1", "item2"],
+		"selling_Items": ["item1", "item2"],
+		"favourite_Items": ["item1", "item2"],
+		"recently_Viewed_Items": ["item1", "item2"],
+		"reviews": ["review1", "review2"]
+	},
+
+	"reviews" : {
+		"user": "username",
+		"item" : "item",
+		"rating" : 10,
+		"description" : "description"
 	}
 }
