@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
-    function submitSellItem() {
+    function submitItem() {
         var ids = ["#sellItemName", "#category", "#sellPrice", "#itemDescription", "#sellItemConfirm"];
         foundAnError = false;
         for (i = 0; i < ids.length; i++) {
@@ -67,7 +67,7 @@
         </div>
     </div>
 
-<form action="sellItem" method="POST">
+<form action="/item" method="POST">
     <div class="row">
     <p align="left">Item name</p>
     <input id="sellItemName" type="text" class="form-control" aria-describedby="sizing-addon1" onkeypress="startedTyping(sellItemName)" name="sellItemName">
@@ -104,7 +104,7 @@
 
         <div class="row">
     <div class="fileinput fileinput-new" data-provides="fileinput">
-        <span class="btn btn-default btn-file"><span>Choose image file</span><input type="file" /></span>
+        <span class="btn btn-default btn-file"><span>Choose image file</span><input type="file" id = "image" name="image"/></span>
     </div>
         </div>
 

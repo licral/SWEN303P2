@@ -13,7 +13,7 @@ module.exports = router;
 
 
 
-// var Listing = new Schema({
+// var Item = new Schema({
 // Seller : ObjectId
 // ItemName : String
 // Category : ObjectId
