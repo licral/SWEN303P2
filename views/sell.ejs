@@ -10,20 +10,32 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
         function submitItem() {
-            var ids = ["#sellItemName", "#category", "#sellPrice", "#itemDescription", "#sellItemConfirm"];
-            foundAnError = false;
-            for (i = 0; i < ids.length; i++) {
+            var ids = ["#itemName", "#category", "#price", "#quantity", "#image", "#description"];
+            foundError = false;
+            for(i = 0; i < ids.length; i++){
                 if ($(ids[i]).val().length == 0) {
                     $(ids[i]).css({"background-color": 'LightPink'});
-                    foundAnError = true;
+                    foundError = true;
                 } else
                     $(ids[i]).css({"background-color": 'White'});
             }
-            if (foundAnError){
+            if (foundError) {
                 $("#errorMsg").show();
             } else {
                 // submit item for sale
-                window.location.href = "/";
+                $.post('/sell/add_item?itemName=' + $(ids[0]).val() +
+                        '&category=' + $(ids[1]).val() +
+                        '&price=' + $(ids[2]).val() +
+                        '&quantity=' + $(ids[3]).val() +
+                        '&image=' + $(ids[4]).val() +
+                        '&description=' + $(ids[5]).val(),
+                        function(data) {
+                            if (data == "true") {
+                                window.location.href = "/";
+                            } else {
+                                $("#errorMsg").show();
+                            }
+                });
             }
         }
 
@@ -31,16 +43,6 @@
             $(id).css({"background-color": 'White'});
         }
     </script>
-
-    <script>
-        $(document).ready(function () {
-    // if user's items for sale = 0
-            $("#carousel").hide();
-
-
-        })
-    </script>
-
 
     <!-- Creates the menubar as defined in menubar-src -->
     <% include include/menubar.ejs %>
@@ -57,11 +59,11 @@
             </div>
         </div>
 
-        <form action="/item" method="POST">
+        <form action="/item" method="POST" enctype="multipart/form-data">
             <!-- Item name -->
             <fieldset class="form-group">
-                <label for="sellItemName">Item Name</label>
-                <input type="text" class="form-control" id="sellItemName" placeholder="Enter item name" name="sellItemName">
+                <label for="itemName">Item Name</label>
+                <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" onkeypress="startedTyping(itemName)">
                 <small class="text-muted">e.g. Green T-shirt</small>
             </fieldset>
             <!-- End of item name -->
@@ -81,8 +83,8 @@
             <div class="left-pane">
                 <!-- Price -->
                 <fieldset class="form-group left">
-                    <label for="sellPrice">Price</label>
-                    <input type="number" class="form-control" id="sellPrice" placeholder="Enter item price" name="sellPrice" min="0">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(price)" onclick="startedTyping(price)">
                     <small class="text-muted">e.g. Green T-shirt</small>
                 </fieldset>
                 <!-- End of price -->
@@ -90,7 +92,7 @@
                 <!-- Quantity -->
                 <fieldset class="form-group left">
                     <label for="quantity">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="Enter item quantity" name="quantity" min="1">
+                    <input type="number" class="form-control" id="quantity" placeholder="Enter item quantity" name="quantity" min="1" onkeypress="startedTyping(quantity)" onclick="startedTyping(quantity)">
                     <small class="text-muted">e.g. 2</small>
                 </fieldset>
                 <!-- End of quantity -->
@@ -98,7 +100,7 @@
                 <!-- Upload image -->
                 <fieldset class="form-group left">
                     <label for="image">File input</label>
-                    <input type="file" class="form-control-file" id="image">
+                    <input type="file" class="form-control-file" id="image" name="image" onclick="startedTyping(image)">
                     <small class="text-muted">Image formats can be .jpg or .png</small>
                 </fieldset>
                 <!-- end of upload image -->
@@ -106,12 +108,12 @@
 
             <!-- Item description -->
             <fieldset class="form-group">
-                <label for="itemDescription">Item Description</label>
-                <textarea class="form-control" id="itemDescription" rows="5" placeholder="Type your item description here" name="itemDescription"></textarea>
+                <label for="description">Item Description</label>
+                <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" onkeypress="startedTyping(description)"></textarea>
             </fieldset>
             <!-- End of item description -->
 
-            <button type="button" class="btn btn-default btn-lg submit" onclick="submitSellItem()">Submit listing</button>
+            <button type="button" class="btn btn-default btn-lg submit" onclick="submitItem();">Submit listing</button>
         </form>
     </div>
 </body>

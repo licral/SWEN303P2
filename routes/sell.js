@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+var multer = require('multer');
+var storage = multer.memoryStorage();
+var upload = multer({storage: storage});
+router.use(upload.single('file'));
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('sell', {
