@@ -8,7 +8,6 @@
 		"user" : "user name (person who uploaded it)",
 		"timestamp" : "some time stamp",
 		"stock" : 2,
-		"user": "the user who uploaded the item",
 		"category" : ["category1", "category2"],
 		"reviews" : ["review1", "review2"]
 	},

@@ -13,7 +13,7 @@ var fs = require('fs');
 var mongoose = require('mongoose');
 mongoose.connect(url);
 
-var A = require('./mongoose.js');
+var A = require('./mongoose');
 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -27,11 +27,18 @@ router.get('/', function(req, res, next) {
 
 router.post('/add_item', function(req, res){
     var a = new A();
-    a.img.data = req.file.buffer;
-    a.img.contentType = 'image/jpg';
+    a.description = req.body.description;
+    a.price = req.body.price;
+    // ADD USER
+    // ADD TIMESTAMP
+    a.stock = req.body.quantity;
+    a.category = req.body.category;
+    // ADD REVIEWS
+    a.image.data = req.file.buffer;
+    a.image.contentType = 'image/jpg';
     a.save(function(err){
         if(err) throw err;
-        console.log('saved img to mongo');
+        console.log('Item added to database');
         res.redirect("/sell/success");
     });
 });
@@ -45,8 +52,8 @@ router.get('/success', function(req, res){
 // METHOD OF GETTING THE IMAGE AND RETURNING IT
 router.get('/uploads/fullsize/:id', function(req, res){
     id = req.params.id;
-    A.find({'_id' : id}, 'img.data', function(err, data){
-        var img = data[0].img.data;
+    A.find({'_id' : id}, 'image.data', function(err, data){
+        var img = data[0].image.data;
         res.writeHead(200, {'Content-Type' : 'image/jpg'});
         res.end(img, 'binary');
     });

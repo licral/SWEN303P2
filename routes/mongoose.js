@@ -13,11 +13,18 @@ var Schema = mongoose.Schema;
 mongoose.createConnection(url);
 
 var schema = new Schema({
-    img: {
+    description : String,
+    price : Number,
+    image: {
         id: Number,
         data: Buffer,
         contentType: String
-    }
+    },
+    user: String,
+    timestamp: Date,
+    stock: Number,
+    category : String,
+    reviews : Array
 });
 
-module.exports = mongoose.model('Image', schema);
+module.exports = mongoose.model('item', schema);
