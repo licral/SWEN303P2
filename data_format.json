@@ -1,5 +1,4 @@
 {
-	// 10 items
 	"item" : {
 		"title" : "Some title",
 		"description" : "Some description",
@@ -13,25 +12,20 @@
 		"reviews" : ["review1", "review2"]
 	},
 
-	// 2 users
-	db.traffic.insert(
 	"users" : {
-		"_id" : 0,
 		"username" : "user name",
 		"password" : "password",
 		"firstname" : "first name",
 		"lastname" : "last name",
 		"bank_Account" : 12345678,
-		"previous_Purchases": [0, 1],
-		"selling_Items": [0, 1],
-		"favourite_Items": [0, 1],
-		"recently_Viewed_Items": [0, 1],
-		"reviews": [0, 1]
-	});
+		"previous_Purchases": ["item1", "item2"],
+		"selling_Items": ["item1", "item2"],
+		"favourite_Items": ["item1", "item2"],
+		"recently_Viewed_Items": ["item1", "item2"],
+		"reviews": ["review1", "review2"]
+	},
 
-	// 0 reviews
 	"reviews" : {
-		"_id" : 0,
 		"user": "username",
 		"item" : "item",
 		"rating" : 10,

@@ -13,7 +13,7 @@ var url = 'mongodb://localhost:27017/SWEN303';
 3. In the extracted folder, create a new folder called "data" (this will hold the data stored in the database)
 4. Open a terminal in the extracted folder
 5. Run the command "./bin/mongod --storageEngine mmapv1 --dbpath=./data --port 27017" to start the database server
-
+ ./bin/mongod --storageEngine mmapv1 --dbpath=./data --port 27017
 The website should now be able to connect to the database
 *///////////////////////////////////////////////////////////////////////////////////
 
