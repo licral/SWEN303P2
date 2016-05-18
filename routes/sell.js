@@ -4,7 +4,12 @@ var router = express.Router();
 var multer = require('multer');
 var storage = multer.memoryStorage();
 var upload = multer({storage: storage});
-router.use(upload.single('file'));
+router.use(upload.single('image'));
+
+var MongoClient = require('mongodb').MongoClient;
+
+// Connection URL
+var url = 'mongodb://localhost:27017/SWEN303';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +18,10 @@ router.get('/', function(req, res, next) {
         page : 'Sell'
     });
 });
+
+router.post('/add_item', function(req, res){
+    res.redirect("/");
+})
 
 module.exports = router;
 

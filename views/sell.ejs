@@ -27,7 +27,6 @@
                         '&category=' + $(ids[1]).val() +
                         '&price=' + $(ids[2]).val() +
                         '&quantity=' + $(ids[3]).val() +
-                        '&image=' + $(ids[4]).val() +
                         '&description=' + $(ids[5]).val(),
                         function(data) {
                             if (data == "true") {
@@ -59,7 +58,7 @@
             </div>
         </div>
 
-        <form action="/item" method="POST" enctype="multipart/form-data">
+        <form action="/sell/add_item" method="POST" enctype="multipart/form-data">
             <!-- Item name -->
             <fieldset class="form-group">
                 <label for="itemName">Item Name</label>
@@ -113,7 +112,7 @@
             </fieldset>
             <!-- End of item description -->
 
-            <button type="button" class="btn btn-default btn-lg submit" onclick="submitItem();">Submit listing</button>
+            <button type="submit" class="btn btn-default btn-lg submit">Submit listing</button>
         </form>
     </div>
 </body>
