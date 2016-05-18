@@ -26,8 +26,8 @@
             <% imageIDs.forEach(function(id) { %>
             <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
                 <p class = item>Cool Tech Item</p>
-                <a class="entry" href="item/id">
-                    <img class="img-responsive" src="../sell/uploads/fullsize/<%= id %>" alt="">
+                <a class="entry" href="item/<%= id %>">
+                    <img class="img-responsive" src="image/<%= id %>" alt="">
                 </a>
                 <p class = stock>In Stock: 1</p>
                 <p class =price>Price: $20</p>

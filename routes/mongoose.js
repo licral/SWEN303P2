@@ -13,6 +13,7 @@ var Schema = mongoose.Schema;
 mongoose.createConnection(url);
 
 var schema = new Schema({
+    title: String,
     description : String,
     price : Number,
     image: {

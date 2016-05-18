@@ -114,12 +114,16 @@ label.login{
 }
 /*======== SELL PAGE END ========*/
 
+/*======== ITEM PAGE ==========*/
+.item-image{
+    float: left;
+}
+/*======= END OF ITEM PAGE ====*/
+
 #entry{
-    margin: 10px;
-    padding: 10px;
     background-color: rgba(53, 216, 244, 0.26) !important;
     border: 2px solid rgb(16, 27, 245);
-    border-radius: 5px;
+    border-radius: 12px;
     border-color: #555;
 }
 
