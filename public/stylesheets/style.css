@@ -113,3 +113,27 @@ label.login{
     clear: left;
 }
 /*======== SELL PAGE END ========*/
+
+#entry{
+    background-color: rgba(53, 216, 244, 0.26) !important;
+    border: 2px solid rgb(16, 27, 245);
+    border-radius: 12px;
+    border-color: #555;
+}
+
+p.item{
+    text-align:center;
+}
+
+p.stock{
+    width : 50%;
+    float:left;
+    text-align:left;
+}
+
+p.price{
+    width : 50%;
+    float:right;
+    text-align:right
+}
+
