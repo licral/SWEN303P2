@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
 var MongoClient = require('mongodb').MongoClient;
 
 // Connection URL
@@ -29,18 +32,17 @@ var Item = new Schema({
     Reviews : ObjectId
 });
 
-router.post('/sell', function (req, res) {
-    var newItem = {
-            seller = getCookie("isLoggedIn"),
-        itemName = req.query.sellItemName,
-        category = req.query.category,
-        price = req.query.sellPrice,
-        stock = req.query.quantity,
-        description = req.query.itemDescription,
-        image = req.query.image,
-        timestamp = new Date(),
-        reviews = "not implemented"
-}
+router.post('/add_item', function (req, res) {
+        var seller = getCookie("isLoggedIn");
+        var itemName = req.query.sellItemName;
+        var category = req.query.category;
+        var price = req.query.sellPrice;
+        var stock = req.query.quantity;
+        var description = req.query.itemDescription;
+        var image = req.query.image;
+        var timestamp = new Date();
+        var reviews = "not implemented";
+
 
 
     // Use connect method to connect to the Server
@@ -51,7 +53,7 @@ router.post('/sell', function (req, res) {
         }
 
         db.collection('items').insert(
-            {newItem},
+            {"seller": seller, "itemName": itenName, "category":category, "price":price, "stock": stock, "description": description, "image": image, "timestamp": timestamp, "reviews": reviews},
             function (err, result) {
                 console.log("Inserted 3 documents into the document collection");
 
