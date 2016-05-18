@@ -14,6 +14,7 @@ var account = require('./routes/account');
 var register = require('./routes/register');
 var settings = require('./routes/settings');
 var shoppingCart = require('./routes/shopping_cart');
+var mongoose = require('./routes/mongoose');
 
 
 var app = express();

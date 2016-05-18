@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+
+// Connection URL
+
+var Image = require('./mongoose');
+
+
+
 /* GET home page. */
 router.get('/clothing', function(req, res, next) {
     res.render('clothing', {
@@ -10,10 +17,16 @@ router.get('/clothing', function(req, res, next) {
 });
 
 router.get('/technology', function(req, res, next) {
-    res.render('technology', {
-        title: 'Express',
-        page : 'Browse Technology'
+    Image.distinct("_id", function(err, ids) {
+        if (err) throw err;
+
+        res.render('technology', {
+            title: 'Express',
+            page : 'Browse Technology',
+            imageIDs : ids
+        });
     });
+
 });
 
 router.get('/arts_and_crafts', function(req, res, next) {

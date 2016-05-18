@@ -14,6 +14,7 @@
 
 	<!-- Page Content -->
 
+    <!--Upload some images via sell then check this out! -->
 	<div class="container">
 
 		<div class="row">
@@ -22,63 +23,22 @@
 				<h1 class="page-header">Technology Listings</h1>
 			</div>
 
-			<div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                <p class = item>Cool Tech Item</p>
-                <a class="entry" href="item/id">
-                    <img class="img-responsive" src="http://blogs-images.forbes.com/joshbersin/files/2014/10/t.jpg" alt="">
-                </a>
-                <p class = stock>In Stock: 1</p>
-                <p class =price>Price: $20</p>
-            </div>
-
+            <% imageIDs.forEach(function(id) { %>
             <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
                 <p class = item>Cool Tech Item</p>
                 <a class="entry" href="item/id">
-                    <img class="img-responsive" src="http://blogs-images.forbes.com/joshbersin/files/2014/10/t.jpg" alt="">
+                    <img class="img-responsive" src="../sell/uploads/fullsize/<%= id %>" alt="">
                 </a>
                 <p class = stock>In Stock: 1</p>
                 <p class =price>Price: $20</p>
             </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                <p class = item>Cool Tech Item</p>
-                <a class="entry" href="item/id">
-                    <img class="img-responsive" src="http://blogs-images.forbes.com/joshbersin/files/2014/10/t.jpg" alt="">
-                </a>
-                <p class = stock>In Stock: 1</p>
-                <p class =price>Price: $20</p>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                <p class = item>Cool Tech Item</p>
-                <a class="entry" href="item/id">
-                    <img class="img-responsive" src="http://blogs-images.forbes.com/joshbersin/files/2014/10/t.jpg" alt="">
-                </a>
-                <p class = stock>In Stock: 1</p>
-                <p class =price>Price: $20</p>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                <p class = item>Cool Tech Item</p>
-                <a class="entry" href="item/id">
-                    <img class="img-responsive" src="http://blogs-images.forbes.com/joshbersin/files/2014/10/t.jpg" alt="">
-                </a>
-                <p class = stock>In Stock: 1</p>
-                <p class =price>Price: $20</p>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                <p class = item>Cool Tech Item</p>
-                <a class="entry" href="item/id">
-                    <img class="img-responsive" src="http://blogs-images.forbes.com/joshbersin/files/2014/10/t.jpg" alt="">
-                </a>
-                <p class = stock>In Stock: 1</p>
-                <p class =price>Price: $20</p>
-            </div>
+            <% }); %>
 
 
 
 		</div>
+
+
     </div>
 	</body>
 </html>

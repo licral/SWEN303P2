@@ -11,19 +11,10 @@ router.use(upload.single('image'));
 
 var fs = require('fs');
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
 mongoose.connect(url);
 
-var schema = new Schema({
-    img: {
-        id: Number,
-        data: Buffer,
-        contentType: String
-    }
-});
+var A = require('./mongoose.js');
 
-var A = mongoose.model('image', schema);
 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -57,6 +48,15 @@ router.get('/uploads/fullsize/:id', function(req, res){
         res.end(img, 'binary');
     });
 });
+
+router.get('/allitems', function(req,res){
+    A.distinct("_id", function(err, imageIDs) {
+        if (err) throw err;
+
+        // object of all the users
+        console.log(imageIDs);
+    });
+})
 
 module.exports = router;
 
