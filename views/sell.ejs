@@ -23,7 +23,7 @@
                 $("#errorMsg").show();
             } else {
                 // submit item for sale
-                $.post('/sell/add_item?itemName=' + $(ids[0]).val() +
+                $.post('/item/add_item?itemName=' + $(ids[0]).val() +
                         '&category=' + $(ids[1]).val() +
                         '&price=' + $(ids[2]).val() +
                         '&quantity=' + $(ids[3]).val() +
@@ -85,7 +85,7 @@
                 <fieldset class="form-group left">
                     <label for="price">Price</label>
                     <input type="number" class="form-control" id="price" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(price)" onclick="startedTyping(price)">
-                    <small class="text-muted">e.g. Green T-shirt</small>
+                    <small class="text-muted">e.g. 25.00</small>
                 </fieldset>
                 <!-- End of price -->
 
