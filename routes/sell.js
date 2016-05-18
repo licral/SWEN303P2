@@ -15,7 +15,6 @@ mongoose.connect(url);
 
 var A = require('./mongoose.js');
 
-
 var MongoClient = require('mongodb').MongoClient;
 
 /* GET home page. */
@@ -28,21 +27,25 @@ router.get('/', function(req, res, next) {
 
 router.post('/add_item', function(req, res){
     var a = new A();
-    console.log(req.file);
     a.img.data = req.file.buffer;
     a.img.contentType = 'image/jpg';
     a.save(function(err){
         if(err) throw err;
         console.log('saved img to mongo');
-        res.redirect("/sell/uploads/fullsize/" + a._id);
+        res.redirect("/sell/success");
     });
+});
+
+router.get('/success', function(req, res){
+   res.render('success', {
+       message: "Item has been successfully added"
+   });
 });
 
 // METHOD OF GETTING THE IMAGE AND RETURNING IT
 router.get('/uploads/fullsize/:id', function(req, res){
     id = req.params.id;
     A.find({'_id' : id}, 'img.data', function(err, data){
-        console.log(data[0].img.data);
         var img = data[0].img.data;
         res.writeHead(200, {'Content-Type' : 'image/jpg'});
         res.end(img, 'binary');
@@ -56,7 +59,7 @@ router.get('/allitems', function(req,res){
         // object of all the users
         console.log(imageIDs);
     });
-})
+});
 
 module.exports = router;
 
