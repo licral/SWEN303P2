@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
+        
+
         function submitItem() {
             var ids = ["#itemName", "#category", "#price", "#quantity", "#image", "#description"];
             foundError = false;
@@ -58,11 +60,11 @@
             </div>
         </div>
 
-        <form action="/sell/add_item" method="POST" enctype="multipart/form-data">
+        <form action="/sell/add_item" method="POST" name = "itemForm" enctype="multipart/form-data">
             <!-- Item name -->
             <fieldset class="form-group">
                 <label for="itemName">Item Name</label>
-                <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" onkeypress="startedTyping(itemName)">
+                <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" onkeypress="startedTyping(itemName)" required>
                 <small class="text-muted">e.g. Green T-shirt</small>
             </fieldset>
             <!-- End of item name -->
@@ -70,8 +72,8 @@
             <!-- Item Category -->
             <fieldset class="form-group">
                 <label for="category">Item Category</label>
-                <select class="form-control" id="category" name="category">
-                    <option name="">Select a category</option>
+                <select class="form-control" id="category" name="category" required>
+                    <option value="">Select a category</option>
                     <option name="clothing">Clothing</option>
                     <option name="technology">Technology</option>
                     <option name="artsandcrafts">Arts and Crafts</option>
@@ -83,7 +85,7 @@
                 <!-- Price -->
                 <fieldset class="form-group left">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control" id="price" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(price)" onclick="startedTyping(price)">
+                    <input type="number" class="form-control" id="price" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(price)" onclick="startedTyping(price)" required>
                     <small class="text-muted">e.g. 25.00</small>
                 </fieldset>
                 <!-- End of price -->
@@ -91,7 +93,7 @@
                 <!-- Quantity -->
                 <fieldset class="form-group left">
                     <label for="quantity">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="Enter item quantity" name="quantity" min="1" onkeypress="startedTyping(quantity)" onclick="startedTyping(quantity)">
+                    <input type="number" class="form-control" id="quantity" placeholder="Enter item quantity" name="quantity" min="1" step = "1" onkeypress="startedTyping(quantity)" onclick="startedTyping(quantity)" required>
                     <small class="text-muted">e.g. 2</small>
                 </fieldset>
                 <!-- End of quantity -->
@@ -99,7 +101,7 @@
                 <!-- Upload image -->
                 <fieldset class="form-group left">
                     <label for="image">File input</label>
-                    <input type="file" class="form-control-file" id="image" name="image" onclick="startedTyping(image)">
+                    <input type="file" class="form-control-file" id="image" name="image" onclick="startedTyping(image)" required>
                     <small class="text-muted">Image formats can be .jpg or .png</small>
                 </fieldset>
                 <!-- end of upload image -->
@@ -108,7 +110,7 @@
             <!-- Item description -->
             <fieldset class="form-group">
                 <label for="description">Item Description</label>
-                <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" onkeypress="startedTyping(description)"></textarea>
+                <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" onkeypress="startedTyping(description)" required></textarea>
             </fieldset>
             <!-- End of item description -->
 
