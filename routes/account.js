@@ -8,19 +8,31 @@ var url = 'mongodb://localhost:27017/SWEN303';
 
 ////////////////////////////////////////////////////////////////////////////////////
 /* Instructions to get Mongo working on Vic lab computers
-1. Download the correct version from https://www.mongodb.org/downloads
-2. Extract to any folder
-3. In the extracted folder, create a new folder called "data" (this will hold the data stored in the database)
-4. Open a terminal in the extracted folder
-5. Run the command "./bin/mongod --storageEngine mmapv1 --dbpath=./data --port 27017" to start the database server
+ 1. Download the correct version from https://www.mongodb.org/downloads
+ 2. Extract to any folder
+ 3. In the extracted folder, create a new folder called "data" (this will hold the data stored in the database)
+ 4. Open a terminal in the extracted folder
+ 5. Run the command "./bin/mongod --storageEngine mmapv1 --dbpath=./data --port 27017" to start the database server
  ./bin/mongod --storageEngine mmapv1 --dbpath=./data --port 27017
-The website should now be able to connect to the database
-*///////////////////////////////////////////////////////////////////////////////////
+ The website should now be able to connect to the database
+ *///////////////////////////////////////////////////////////////////////////////////
 
 router.get('/', function (req, res) {
-    res.render('account', {
-        title: 'Express',
-        page : 'Account'
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        db.collection('items').find({"user": req.cookies.isLoggedIn}).toArray(function (err, result) {
+            if (err) {
+                throw err;
+            }
+            console.log(result);
+            res.render('account', {
+                title: 'Express',
+                page : 'Account',
+                myProducts: result
+            });
+        });
     });
 });
 
@@ -49,8 +61,6 @@ router.post('/validate', function (req, res) {
             }
         });
     });
-
-
 });
 
 /**
