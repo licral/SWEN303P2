@@ -30,16 +30,18 @@ router.post('/add_item', function(req, res){
     a.title = req.body.itemName;
     a.description = req.body.description;
     a.price = req.body.price;
-    // ADD USER
-    // ADD TIMESTAMP
+    a.user = req.cookies.isLoggedIn;
+    a.timestamp = new Date();
     a.stock = req.body.quantity;
     a.category = req.body.category;
     // ADD REVIEWS
     a.image.data = req.file.buffer;
     a.image.contentType = 'image/jpg';
+    console.log(a);
     a.save(function(err){
         if(err) throw err;
         console.log('Item added to database');
+
         res.redirect("/sell/success");
     });
 });

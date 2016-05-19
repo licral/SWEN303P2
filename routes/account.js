@@ -44,7 +44,7 @@ router.post('/validate', function (req, res) {
                 res.cookie('isLoggedIn', username, {overwrite: true, httpOnly: false});
                 res.send("true");
             } else {
-                console.log("Loggin failed");
+                console.log("Login failed");
                 res.send("false");
             }
         });
