@@ -134,6 +134,7 @@ router.post('/addItemToCart', function (req, res) {
         if (err) {
             throw err;
         }
+        console.log("Item: " + item);
         db.collection('users').update({"username": username}, { $push: {items_In_Cart: item}});
         console.log("success");
         res.send("success");

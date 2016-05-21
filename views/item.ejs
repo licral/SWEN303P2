@@ -10,6 +10,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script>
             function addToCart(itemID){
+
+                alert(itemID);
                 $.post('/account/addItemToCart?item=' + itemID,
                     function(data) {
                         updateCartCount();
@@ -45,9 +47,9 @@
                     <label for="quantity">Quantity</label>
                     <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
                 </fieldset>
-                <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(id)">
-                    Add to cart
-                </button>
+<<<<<<< HEAD
+                <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(<%=JSON.stringify(id)%>)">Add to cart</button>
+>>>>>>> 5746e9fd7ebda0082717babb6e9943eb498aa4a5
                 <br>
                 <button type="button" class="btn btn-default item-button" onclick="addToFavourites(0)" hidden="true">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>

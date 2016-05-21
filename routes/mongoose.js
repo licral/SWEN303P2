@@ -24,7 +24,7 @@ var schema = new Schema({
     user: String,
     timestamp: Date,
     stock: Number,
-    category : String,
+    category : [String],
     reviews : Array
 });
 
