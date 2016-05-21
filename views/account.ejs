@@ -21,13 +21,11 @@
         </div>
         <div class="panel-body" style="padding-left: 0px; padding-top: 0px; padding-bottom: 0px;">
             <ul class="nav nav-tabs" style="width: auto; height: auto; padding-top: 0px">
-                <li class="active" aria-selected="true"><a data-toggle="tab" href="#home">Statistics</a></li>
-                <li><a data-toggle="tab" href="#menu1">My Products</a></li>
+                <li class="active" aria-selected="true"><a data-toggle="tab" href="#menu1">My Products</a></li>
                 <li><a data-toggle="tab" href="#menu2">Purchase History</a></li>
             </ul>
             <div class="tab-content" style="padding-top: 15px; padding-left: 15px; padding-right: 15px">
-                <div id="home" class="tab-pane fade in active"><% include include/accountStats.ejs %></div>
-                <div id="menu1" class="tab-pane fade"><% include include/accountSales.ejs %></div>
+                <div id="menu1" class="tab-pane fade in active"><% include include/accountSales.ejs %></div>
                 <div id="menu2" class="tab-pane fade"><% include include/accountPurchases.ejs %></div>
             </div>
         </div>

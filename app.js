@@ -17,6 +17,7 @@ var shoppingCart = require('./routes/shopping_cart');
 var mongoose = require('./routes/mongoose');
 var favourites = require('./routes/favourites');
 var search = require('./routes/search');
+var editItem = require('./routes/editItem');
 
 
 var app = express();
@@ -44,6 +45,7 @@ app.use('/settings', settings);
 app.use('/shopping_cart', shoppingCart);
 app.use('/favourites', favourites);
 app.use('/search', search);
+app.use('/editItem', editItem);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

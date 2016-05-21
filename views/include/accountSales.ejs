@@ -14,6 +14,7 @@
     <tr>
         <th>Delete</th>
         <th>Item</th>
+        <th>Edit</th>
         <th>Stock</th>
         <th>Price</th>
         <th>Units Sold</th>
@@ -24,15 +25,16 @@
     <% for(var i=0; i<myProducts.length; i++) {%>
         <tr>
             <td style="width: 30px;"><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #ff0000; font-size: 20px; position: relative; top: 40%; left: 40%;"></span></a></td>
-            <td style="width: auto;"><a href="#"><%= myProducts[i].title %></a></td>
-            <td style="width: 30px;"><input type="number" name="quantity" min="1" max="100" value="1" style="width: 100%; text-align:right;"></td>
+            <td style="width: auto;"><a href="/browse/item/<%=myProducts[i]._id%>"><%= myProducts[i].title %></a></td>
+            <td style="width: 30px;"><a href="/editItem/<%=myProducts[i]._id%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #11aa44; font-size: 20px; position: relative; top: 40%; left: 20%;"></span></a></td>
+            <td style="width: 50px;"><%= myProducts[i].stock %></td>
             <td style="width: 50px;"><%= "$" + myProducts[i].price %></td>
             <td style="width: 50px;">1</td>
             <td style="width: 50px;"><%= "$" + myProducts[i].price %></td>
         </tr>
     <% } %>
     <tfoot>
-    <td colspan="5"><p style="text-align:right;">Total</p></td>
+    <td colspan="6"><p style="text-align:right;">Total</p></td>
     <td ><p>$64.00</p></td>
     </tfoot>
 </table>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %> - <%= page %></title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+        <link rel='stylesheet' href='../../stylesheets/style.css'/>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            function addToCart(itemID){
+                $.post('/account/addItemToCart?item=' + itemID + "&quantity=" +  $("#quantity").val(),
+                    function(data) {
+                        updateCartCount();
+                    }
+                );
+            }
+            function addToFavourites(item){
+                $.post('/favourites/addToFavourites?id=' + item[0] + "&title=" + item[1],
+                    function(data) {
+                        if(data == "success"){
+                            $("#fail").hide();
+                            $("#success").show();
+                        }
+                        else{
+                            $("#success").hide();
+                            $("#fail").show();
+                        }
+                    }
+                );
+            }
+        </script>
+
+        <!-- Creates the menubar as defined in menubar-src -->
+        <% include include/menubar.ejs %>
+
+        <ul class="breadcrumb">
+
+            <% category.forEach(function(subcat) { %>
+            <li><a href="#"><%=subcat%></a></li>
+            <% }); %>
+
+        </ul>
+
+        <!-- Page Content -->
+        <div class="container">
+            <img class="img-responsive item-image" src="../browse/image/<%= id %>" width="30%" alt="">
+            <div class="item-info">
+                <h1><%= page %></h1>
+                <h2>$<%= price %></h2>
+                <fieldset class="form-group">
+                    <label for="quantity">Stock</label>
+                    <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
+                </fieldset>
+                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden="true">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Added to Favourites!
+                </div>
+                <div id="fail" class="alert alert-danger alert-dismissible" role="alert" hidden="true">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Already in Favourites!
+                </div>
+                <hr>
+                <p><%= description %></p>
+            </div>
+        </div>
+    </body>
+</html>
