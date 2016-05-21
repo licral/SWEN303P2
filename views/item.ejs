@@ -16,6 +16,14 @@
                     }
                 );
             }
+            function addToFavourites(itemID){
+                $.post('/favourites/addItemToCart?item=' + itemID,
+                    function(data) {
+                        alert("Hi");
+                        $("#errorMsg").show();
+                    }
+                );
+            }
         </script>
 
         <!-- Creates the menubar as defined in menubar-src -->
@@ -23,6 +31,12 @@
 
         <!-- Page Content -->
         <div class="container">
+            <div class="panel" id="errorMsg" hidden="true">
+                <div class="panel-heading">YAYAYYAYAYAYAY</div>
+                <div class="panel-body">
+                    <p>kjhgljrg</p>
+                </div>
+            </div>
             <img class="img-responsive item-image" src="../image/<%= id %>" width="30%" alt="">
             <div class="item-info">
                 <h1><%= page %></h1>
@@ -31,10 +45,15 @@
                     <label for="quantity">Quantity</label>
                     <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
                 </fieldset>
-                <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(id)">Add to cart</button>
+                <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(id)">
+                    Add to cart
+                </button>
                 <br>
-                <button type="button" class="btn btn-default item-button"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>Favourite</button>
-                <h2>Description</h2>
+                <button type="button" class="btn btn-default item-button" onclick="addToFavourites(0)" hidden="true">
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                    Favourite
+                </button>
+                <hr>
                 <p><%= description %></p>
             </div>
         </div>
