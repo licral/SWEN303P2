@@ -10,9 +10,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script>
             function addToCart(itemID){
-
-                alert(itemID);
-                $.post('/account/addItemToCart?item=' + itemID,
+                $.post('/account/addItemToCart?item=' + itemID + "&quantity=" +  $("#quantity").val(),
                     function(data) {
                         updateCartCount();
                     }
