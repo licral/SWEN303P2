@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %> - <%= page %></title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
-    <link rel='stylesheet' href='../../stylesheets/style.css'/>
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <head>
+        <title><%= title %> - <%= page %></title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+        <link rel='stylesheet' href='../../stylesheets/style.css'/>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<!-- Creates the menubar as defined in menubar-src -->
-<% include include/menubar.ejs %>
+        <!-- Creates the menubar as defined in menubar-src -->
+        <% include include/menubar.ejs %>
 
-<!-- Page Content -->
-<div class="container">
-    <h1><%= page %></h1>
-</div>
-</body>
+        <!-- Page Content -->
+        <div class="container">
+            <h1><%= page %></h1>
+
+            <div class="row">
+                <% items.forEach(function(item) { %>
+                <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
+                        <img class="img-responsive" src="../browse/image/<%= item %>" alt="">
+                    </a>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </body>
 </html>

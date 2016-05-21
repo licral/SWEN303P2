@@ -19,10 +19,9 @@
                 );
             }
             function addToFavourites(itemID){
-                $.post('/favourites/addItemToCart?item=' + itemID,
+                $.post('/favourites/add?item=' + itemID,
                     function(data) {
-                        alert("Hi");
-                        $("#errorMsg").show();
+                        $("#favourite").show();
                     }
                 );
             }
@@ -33,12 +32,6 @@
 
         <!-- Page Content -->
         <div class="container">
-            <div class="panel" id="errorMsg" hidden="true">
-                <div class="panel-heading">YAYAYYAYAYAYAY</div>
-                <div class="panel-body">
-                    <p>kjhgljrg</p>
-                </div>
-            </div>
             <img class="img-responsive item-image" src="../image/<%= id %>" width="30%" alt="">
             <div class="item-info">
                 <h1><%= page %></h1>
@@ -47,14 +40,16 @@
                     <label for="quantity">Quantity</label>
                     <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
                 </fieldset>
-<<<<<<< HEAD
                 <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(<%=JSON.stringify(id)%>)">Add to cart</button>
->>>>>>> 5746e9fd7ebda0082717babb6e9943eb498aa4a5
                 <br>
-                <button type="button" class="btn btn-default item-button" onclick="addToFavourites(0)" hidden="true">
+                <button type="button" class="btn btn-default item-button favourite" onclick="addToFavourites(<%=JSON.stringify(id)%>)" hidden="true">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                     Favourite
                 </button>
+                <div id="favourite" class="alert alert-success alert-dismissible" role="alert" hidden="true">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Added to Favourites!
+                </div>
                 <hr>
                 <p><%= description %></p>
             </div>
