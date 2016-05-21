@@ -10,7 +10,6 @@ var Item = require('./mongoose');
 
 router.get('/item/:id', function(req, res){
     id = req.params.id;
-    console.log(id);
     Item.find({'_id' : id}, function(err, data){
         res.render('item', {
             title: 'Express',

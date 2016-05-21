@@ -42,7 +42,6 @@ router.post('/addToFavourites', function (req, res) {
             if (err) {
                 throw err;
             }
-            console.log(result[0].favourites);
             var found = -1;
             for(var i = 0; i < result[0].favourites.length; i++){
                 if(result[0].favourites[i].id == id){
