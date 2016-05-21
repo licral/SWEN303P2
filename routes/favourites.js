@@ -39,9 +39,20 @@ router.post('/add', function (req, res) {
         if (err) {
             throw err;
         }
-        db.collection('users').update({"username": username}, { $push: {favourites: item}});
-        console.log("Added to Favourites");
-        res.send("success");
+        db.collection('users').find({"username": username}).toArray(function (err, result) {
+            if (err) {
+                throw err;
+            }
+            if(result[0].favourites.indexOf(item) >= 0){
+                console.log("Cannot add duplicate entry");
+                res.send("0");
+            }
+            else {
+                db.collection('users').update({"username": username}, { $push: {favourites: item}});
+                console.log("Added to Favourites");
+                res.send("success");
+            }
+        });
     });
 });
 

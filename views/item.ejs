@@ -21,7 +21,12 @@
             function addToFavourites(itemID){
                 $.post('/favourites/add?item=' + itemID,
                     function(data) {
-                        $("#favourite").show();
+                        if(data == "success"){
+                            $("#success").show();
+                        }
+                        else{
+                            $("#fail").show();
+                        }
                     }
                 );
             }
@@ -46,9 +51,13 @@
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                     Favourite
                 </button>
-                <div id="favourite" class="alert alert-success alert-dismissible" role="alert" hidden="true">
+                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden="true">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     Added to Favourites!
+                </div>
+                <div id="fail" class="alert alert-danger alert-dismissible" role="alert" hidden="true">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Already in Favourites!
                 </div>
                 <hr>
                 <p><%= description %></p>
