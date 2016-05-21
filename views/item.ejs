@@ -19,7 +19,7 @@
                 );
             }
             function addToFavourites(itemID){
-                $.post('/favourites/add?item=' + itemID,
+                $.post('/favourites/addToFavourites?item=' + itemID,
                     function(data) {
                         if(data == "success"){
                             $("#success").show();
