@@ -16,13 +16,15 @@
                     }
                 );
             }
-            function addToFavourites(itemID){
-                $.post('/favourites/addToFavourites?item=' + itemID,
+            function addToFavourites(item){
+                $.post('/favourites/addToFavourites?id=' + item[0] + "&title=" + item[1],
                     function(data) {
                         if(data == "success"){
+                            $("#fail").hide();
                             $("#success").show();
                         }
                         else{
+                            $("#success").hide();
                             $("#fail").show();
                         }
                     }
@@ -53,7 +55,7 @@
                 </fieldset>
                 <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(<%=JSON.stringify(id)%>)">Add to cart</button>
                 <br>
-                <button type="button" class="btn btn-default item-button favourite" onclick="addToFavourites(<%=JSON.stringify(id)%>)" hidden="true">
+                <button type="button" class="btn btn-default item-button favourite" onclick="addToFavourites(<%=JSON.stringify([id, page])%>)" hidden="true">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                     Favourite
                 </button>
