@@ -19,12 +19,20 @@
 
         <!-- Page Content -->
         <div class="container">
-            <h1><%= page %></h1>
-            <img class="img-responsive item-image" src="../image/<%= id %>" width="300px" alt="">
-            <h2>Description</h2>
-            <p><%= description %></p>
-            <p>$<%= price %></p>
-            <button onclick="addToCart(id)">Add to cart</button>
+            <img class="img-responsive item-image" src="../image/<%= id %>" width="30%" alt="">
+            <div class="item-info">
+                <h1><%= page %></h1>
+                <h2>$<%= price %></h2>
+                <fieldset class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
+                </fieldset>
+                <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(id)">Add to cart</button>
+                <br>
+                <button type="button" class="btn btn-default item-button"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>Favourite</button>
+                <h2>Description</h2>
+                <p><%= description %></p>
+            </div>
         </div>
     </body>
 </html>
