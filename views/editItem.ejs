@@ -9,26 +9,31 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script>
-            function addToCart(itemID){
-                $.post('/account/addItemToCart?item=' + itemID + "&quantity=" +  $("#quantity").val(),
-                    function(data) {
-                        updateCartCount();
+            <% include include/categories.js %>
+            window.onload = function () {
+                var category1Sel = document.getElementById("category1Sel"),
+                        category2Sel = document.getElementById("category2Sel"),
+                        category3Sel = document.getElementById("category3Sel");
+                for (var cat1 in categories) {
+                    category1Sel.options[category1Sel.options.length] = new Option(cat1, cat1, cat1);
+                }
+                category1Sel.onchange = function () {
+                    category2Sel.length = 1; // remove all options bar first
+                    category3Sel.length = 1; // remove all options bar first
+                    if (this.selectedIndex < 1) return; // done
+                    for (var cat2 in categories[this.value]) {
+                        category2Sel.options[category2Sel.options.length] = new Option(cat2, cat2);
                     }
-                );
-            }
-            function addToFavourites(item){
-                $.post('/favourites/addToFavourites?id=' + item[0] + "&title=" + item[1],
-                    function(data) {
-                        if(data == "success"){
-                            $("#fail").hide();
-                            $("#success").show();
-                        }
-                        else{
-                            $("#success").hide();
-                            $("#fail").show();
-                        }
+                }
+                category1Sel.onchange(); // reset in case page is reloaded
+                category2Sel.onchange = function () {
+                    category3Sel.length = 1; // remove all options bar first
+                    if (this.selectedIndex < 1) return; // done
+                    var cat3 = categories[category1Sel.value][this.value];
+                    for (var i = 0; i < cat3.length; i++) {
+                        category3Sel.options[category3Sel.options.length] = new Option(cat3[i], cat3[i]);
                     }
-                );
+                }
             }
         </script>
 
@@ -37,7 +42,7 @@
 
         <ul class="breadcrumb">
 
-            <% category.forEach(function(subcat) { %>
+            <% item.category.forEach(function(subcat) { %>
             <li><a href="#"><%=subcat%></a></li>
             <% }); %>
 
@@ -47,22 +52,53 @@
         <div class="container">
             <img class="img-responsive item-image" src="../browse/image/<%= id %>" width="30%" alt="">
             <div class="item-info">
-                <h1><%= page %></h1>
-                <h2>$<%= price %></h2>
                 <fieldset class="form-group">
-                    <label for="quantity">Stock</label>
-                    <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
+                    <label for="itemName">Item Name</label>
+                    <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" value=<%= page %> required>
+                    <small class="text-muted">e.g. Green T-shirt</small>
                 </fieldset>
-                <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden="true">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    Added to Favourites!
-                </div>
-                <div id="fail" class="alert alert-danger alert-dismissible" role="alert" hidden="true">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    Already in Favourites!
-                </div>
-                <hr>
-                <p><%= description %></p>
+
+                <!-- Item Category -->
+                <fieldset class="form-group">
+                    <label for="category">Item Category</label>
+                    <select id="category1Sel" name="category1Sel" size="1">
+                        <option value="<%= item.category[0]%>" selected="selected"><%= item.category[0]%></option>
+                    </select>
+                    <select id="category2Sel" name="category2Sel" size="1">
+                        <option value="<%= item.category[1]%>" selected="selected"><%= item.category[1]%></option>
+                    </select>
+                    <select id="category3Sel" name="category3Sel" size="1" required>
+                        <option value="<%= item.category[2]%>" selected="selected"><%= item.category[2]%></option>
+                    </select>
+
+                </fieldset>
+                <!-- End of item category -->
+
+                <div class="left-pane">
+                    <!-- Price -->
+                    <fieldset class="form-group left">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" value="<%= item.price%>" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(<%= item.price%>)" onclick="startedTyping(<%= item.price%>)" required>
+                        <small class="text-muted">e.g. 25.00</small>
+                    </fieldset>
+                    <!-- End of price -->
+
+                    <!-- Quantity -->
+                    <fieldset class="form-group left">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" placeholder="Enter item stock" name="quantity" min="1" step = "1" value="<%= item.stock%>" onkeypress="startedTyping(<%= item.stock%>)" onclick="startedTyping(<%= item.stock%>)" required>
+                        <small class="text-muted">e.g. 2</small>
+                    </fieldset>
+                    <!-- End of quantity -->
+                    </div>
+                    <!-- Item description -->
+                    <fieldset class="form-group">
+                        <label for="description">Item Description</label>
+                        <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" onkeypress="startedTyping(<%= item.description%>)" required><%= item.description%></textarea>
+                    </fieldset>
+                    <!-- End of item description -->
+
+                    <button type="submit" class="btn btn-default btn-lg submit pull-right">Save Changes</button>
             </div>
         </div>
     </body>
