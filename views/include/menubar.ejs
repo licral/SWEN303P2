@@ -3,12 +3,12 @@
         var user = getCookie("isLoggedIn");
 
         if (user != "") {
-            $("#loggedInButtons").show();
-            $("#loggedOutButtons").hide();
+            $(".loggedInButtons").show();
+            $(".loggedOutButtons").hide();
             updateCartCount();
         } else {
-            $("#loggedInButtons").hide();
-            $("#loggedOutButtons").show();
+            $(".loggedInButtons").hide();
+            $(".loggedOutButtons").show();
         }
     });
 
@@ -68,7 +68,7 @@
 					</ul>
 				</li>
                 <li><a href="/sell">Sell</a></li>
-                <li><a href="/favourites">Favourites</a></li>
+                <li class="loggedInButtons"><a href="/favourites">Favourites</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -85,12 +85,12 @@
                     </form>
                 </li>
                 <!-- Not logged In -->
-                <ul id="loggedOutButtons" class="nav navbar-nav navbar-right">
+                <ul id="loggedOutButtons" class="nav navbar-nav navbar-right loggedOutButtons">
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Log in</a></li>
                 </ul>
                 <!-- Logged In -->
-                <ul id="loggedInButtons" class="nav navbar-nav navbar-right">
+                <ul id="loggedInButtons" class="nav navbar-nav navbar-right loggedInButtons">
 
                    <!-- <li> <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>
                     <li> <a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>-->

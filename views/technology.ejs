@@ -12,7 +12,6 @@
 	<!-- Creates the menubar as defined in menubar-src -->
 	<% include include/menubar.ejs %>
 
-	<!-- Page Content -->
 
     <!--Upload some images via sell then check this out! -->
 	<div class="container">
@@ -22,6 +21,14 @@
 			<div class="col-lg-12" id = header>
 				<h1 class="page-header">Technology Listings</h1>
 			</div>
+
+			<!-- Page Content -->
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Private</a></li>
+				<li><a href="#">Pictures</a></li>
+				<li class="active">Vacation</li>
+			</ul>
 
             <% items.forEach(function(item) { %>
             <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
@@ -37,6 +44,14 @@
 
 
 		</div>
+
+		<ul class="pagination">
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+		</ul>
 
 
     </div>
