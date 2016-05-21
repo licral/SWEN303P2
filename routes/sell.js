@@ -33,7 +33,8 @@ router.post('/add_item', function(req, res){
     a.user = req.cookies.isLoggedIn;
     a.timestamp = new Date();
     a.stock = req.body.quantity;
-    a.category = req.body.category;
+    //a.category = req.body.category;
+    a.category = [req.body.category1Sel, req.body.category2Sel, req.body.category3Sel];
     // ADD REVIEWS
     a.image.data = req.file.buffer;
     a.image.contentType = 'image/jpg';

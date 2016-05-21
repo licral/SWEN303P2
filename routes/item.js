@@ -23,9 +23,11 @@ var url = 'mongodb://localhost:27017/SWEN303';
 var Item = new Schema({
     Seller : ObjectId,
     ItemName : String,
-    Category : ObjectId,
+    Category1 : ObjectId,
+    Category2 : ObjectId,
+    Category3 : ObjectId,
     Price : Number,
-    Quanitity : Number,
+    Quantity : Number,
     Description : String,
     Image : ObjectId,
     Timestamp : Date,
@@ -35,7 +37,9 @@ var Item = new Schema({
 router.post('/add_item', function (req, res) {
         var seller = getCookie("isLoggedIn");
         var itemName = req.query.sellItemName;
-        var category = req.query.category;
+        var category1 = req.query.category1;
+        var category2 = req.query.category2;
+        var category3 = req.query.category3;
         var price = req.query.sellPrice;
         var stock = req.query.quantity;
         var description = req.query.itemDescription;
