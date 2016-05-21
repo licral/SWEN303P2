@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.post('/add', function (req, res) {
+router.post('/addToFavourites', function (req, res) {
     var username = req.cookies.isLoggedIn;
     var item = req.query.item;
     // Use connect method to connect to the Server
