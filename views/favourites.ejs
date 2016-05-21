@@ -22,8 +22,9 @@
                 <%} else {%>
                     <% items.forEach(function(item) { %>
                     <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                        <a class="entry" href="../browse/item/<%= item %>">
-                            <img class="img-responsive" src="../browse/image/<%= item %>" alt="">
+                        <p class = item><%= item.title %></p>
+                        <a class="entry" href="../browse/item/<%= item.id %>">
+                            <img class="img-responsive" src="../browse/image/<%= item.id %>" alt="">
                         </a>
                     </div>
                     <% }); %>

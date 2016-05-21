@@ -19,9 +19,6 @@ router.get('/', function(req, res, next) {
             if (err) {
                 throw err;
             }
-            console.log("Hellowwwwwwww")
-            console.log(result[0]);
-            console.log("Worldddddddd")
             res.render('favourites', {
                 title: 'Express',
                 page: 'Favourites',
@@ -33,7 +30,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/addToFavourites', function (req, res) {
     var username = req.cookies.isLoggedIn;
-    var item = req.query.item;
+    var id = req.query.id;
+    var title = req.query.title;
+    console.log(title);
     // Use connect method to connect to the Server
     MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -43,12 +42,19 @@ router.post('/addToFavourites', function (req, res) {
             if (err) {
                 throw err;
             }
-            if(result[0].favourites.indexOf(item) >= 0){
+            console.log(result[0].favourites);
+            var found = -1;
+            for(var i = 0; i < result[0].favourites.length; i++){
+                if(result[0].favourites[i].id == id){
+                    found = i;
+                }
+            }
+            if(found >= 0){
                 console.log("Cannot add duplicate entry");
                 res.send("0");
             }
-            else {
-                db.collection('users').update({"username": username}, { $push: {favourites: item}});
+            else{
+                db.collection('users').update({"username": username}, { $push: {favourites: {id: id, title: title}}});
                 console.log("Added to Favourites");
                 res.send("success");
             }
