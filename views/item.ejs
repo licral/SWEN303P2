@@ -8,6 +8,11 @@
     <body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            function addToCart(itemID){
+                alert("Item added");
+            }
+        </script>
 
         <!-- Creates the menubar as defined in menubar-src -->
         <% include include/menubar.ejs %>
@@ -19,6 +24,7 @@
             <h2>Description</h2>
             <p><%= description %></p>
             <p>$<%= price %></p>
+            <button onclick="addToCart(id)">Add to cart</button>
         </div>
     </body>
 </html>

@@ -3,6 +3,7 @@
 		"title" : "Some title",
 		"description" : "Some description",
 		"price" : 20.20,
+		"unitSold": 0,
 		"image" : "some image",
 		"user" : "user name (person who uploaded it)",
 		"timestamp" : "some time stamp",
