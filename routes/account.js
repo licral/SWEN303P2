@@ -86,7 +86,7 @@ router.post('/register', function (req, res) {
         console.log("Logged in");
 
         db.collection('users').insert(
-            {"username": username, "password": password, "firstname": firstname, "lastname": lastname},
+            {"username": username, "password": password, "firstname": firstname, "lastname": lastname, "favourites":[]},
             function (err, result) {
                 console.log("Inserted 3 documents into the document collection");
 
