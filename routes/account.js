@@ -150,4 +150,20 @@ router.post('/addItemToCart', function (req, res) {
     });
 });
 
+// <!--<td style="width: 30px;"><input type="number" name="quantity" min="1" max="1000" style="width: 100%; text-align:right;" id="quantity<%=i%>" value=<%= Number(quantityList[i])%>>-->
+router.post('/removeItemFromCart', function (req, res) {
+    var username = req.cookies.isLoggedIn;
+    var item = req.query.item;
+
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').update({"username": username}, { $pull: { "items_In_Cart" : { "itemID" :item}}});
+        console.log("success");
+        res.send("success");
+    });
+});
+
 module.exports = router;

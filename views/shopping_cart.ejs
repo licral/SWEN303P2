@@ -9,11 +9,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!--<script src="../Scripts/scripts.js"></script>-->
-<!--<script>
-    $( ".input" ).change(function() {
-        updateCartCount();
-    });
-</script>-->
+<script>
+    function removeItem(itemID){
+        $.post('/account/removeItemFromCart?item=' + itemID,
+            function(data) {
+                window.location.href = "/shopping_cart";
+            }
+        );
+    }
+</script>
 
 
 <!-- Creates the menubar as defined in menubar-src -->
@@ -29,41 +33,45 @@
         </div>
 
         <div class="panel-body">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Remove</th>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% for(var i=0; i<items.length; i++) {%>
+            <% if (items.length > 0) {%>
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <td style="width: 30px;"><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #ff0000; font-size: 20px; position: relative; top: 40%; left: 40%;"></span></a></td>
-                        <td style="width: auto;"><a href="/browse/item/<%= items[i]._id %>"><%= items[i].title %></a></td>
-                        <td style="width: 30px;"><input type="number" name="quantity" min="1" max="100" style="width: 100%; text-align:right;" value=<%= Number(quantityList[i])%>></td>
-                        <td style="width: 50px;">$<%= items[i].price %></td>
-                        <td style="width: 50px;">$<%= items[i].price * Number(quantityList[i])%></td>
+                        <th>Remove</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
                     </tr>
-                <% } %>
-                </tbody>
+                    </thead>
+                    <tbody>
+                    <% for(var i=0; i<items.length; i++) {%>
+                        <tr>
+                            <td style="width: 30px;"><a href="#" onclick="removeItem(<%=JSON.stringify(items[i]._id)%>)"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #ff0000; font-size: 20px; position: relative; top: 40%; left: 40%;"></span></a></td>
+                            <td style="width: auto;"><a href="/browse/item/<%= items[i]._id %>"><%= items[i].title %></a></td>
+                            <td style="width: 50px;"><p><%= Number(quantityList[i])%></p></td>
+                            <td style="width: 50px;"><p>$<%= items[i].price %></p></td>
+                            <td style="width: 50px;"><p>$<%= items[i].price * Number(quantityList[i])%></p></td>
+                        </tr>
+                    <% } %>
+                    </tbody>
 
-                <tfoot>
-                    <td colspan="4"><p style="text-align:right;">Total</p></td>
-                    <td>
-                        <% var totalPrice = 0; %>
-                        <% for(var i=0; i<items.length; i++) {%>
-                            <% totalPrice += items[i].price * Number(quantityList[i]) %>
-                        <% } %>
-                        <p>$<%= totalPrice%></p>
-                    </td>
-                </tfoot>
-            </table>
+                    <tfoot>
+                        <td colspan="4"><p style="text-align:right;">Total</p></td>
+                        <td>
+                            <%var totalPrice = 0;%>
+                            <%for(var i=0; i<items.length; i++) {%>
+                            <%totalPrice += items[i].price * Number(quantityList[i]);%>
+                            <%}%>
+                            <p id="TotalPrice">$<%= totalPrice%></p></td>
+                    </tfoot>
+                </table>
 
-            <button class="btn btn-default pull-right">Continue to Checkout</button>
+                <button class="btn btn-default pull-right">Continue to Checkout</button>
+            <%} else {%>
+                <h>There are no items in the shopping cart</h>
+            <%}%>
+
         </div>
     </div>
 
