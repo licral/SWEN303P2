@@ -42,7 +42,8 @@ router.get('/item/:id', function(req, res){
             page : data[0].title,
             id : data[0]._id,
             description: data[0].description,
-            price: data[0].price
+            price: data[0].price,
+            category : data[0].category
         });
     });
 });

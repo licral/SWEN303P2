@@ -23,6 +23,14 @@
         <!-- Creates the menubar as defined in menubar-src -->
         <% include include/menubar.ejs %>
 
+        <ul class="breadcrumb">
+
+            <% category.forEach(function(subcat) { %>
+                <li><a href="#"><%=subcat%></a></li>
+            <% }); %>
+
+        </ul>
+
         <!-- Page Content -->
         <div class="container">
             <img class="img-responsive item-image" src="../image/<%= id %>" width="30%" alt="">
