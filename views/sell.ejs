@@ -10,22 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script>
 
-        var categories = {
-            "Clothing": {
-                "Women": ["Shirts", "Dresses and skirts", "Jeans, pants and shorts", "Accessories"],
-                "Men": ["Tops & t-shirts", "Jeans and trousers"],
-                "Children": ["Tops", "Pants"]
-            },
-            "Technology": {
-                "Gadgets": ["Binoculars", "Cameras"],
-                "Computers": ["Desktops", "Laptops"]
-            },
-            "Arts and Crafts": {
-                "Jewellery": ["Earrings", "Necklaces", "Rings"],
-                "Fabric": ["Quilts", "Embroidery", "Crochet"],
-                "Craft supplies": ["Knitting", "Bakeware", "Jewellery and beading"]
-        }
-        }
+        <% include include/categories.js %>
         window.onload = function () {
             var category1Sel = document.getElementById("category1Sel"),
                     category2Sel = document.getElementById("category2Sel"),
