@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Connection URL
 
-var Image = require('./mongoose');
+var Item = require('./mongoose');
 
 /* GET home page. */
 router.get('/clothing', function(req, res, next) {
@@ -15,13 +15,13 @@ router.get('/clothing', function(req, res, next) {
 });
 
 router.get('/technology', function(req, res, next) {
-    Image.distinct("_id", function(err, ids) {
+    Item.find({}, function(err, items) {
         if (err) throw err;
 
         res.render('technology', {
             title: 'Express',
             page : 'Browse Technology',
-            imageIDs : ids
+            items: items
         });
     });
 
@@ -36,7 +36,7 @@ router.get('/arts_and_crafts', function(req, res, next) {
 
 router.get('/item/:id', function(req, res){
     id = req.params.id;
-    Image.find({'_id' : id}, function(err, data){
+    Item.find({'_id' : id}, function(err, data){
         res.render('item', {
             title: 'Express',
             page : data[0].title,
@@ -49,7 +49,7 @@ router.get('/item/:id', function(req, res){
 
 router.get('/image/:id', function(req, res){
     id = req.params.id;
-    Image.find({'_id' : id}, 'image.data', function(err, data){
+    Item.find({'_id' : id}, 'image.data', function(err, data){
         var img = data[0].image.data;
         res.writeHead(200, {'Content-Type' : 'image/jpg'});
         res.end(img, 'binary');
