@@ -23,6 +23,7 @@
 		"selling_Items": ["item1", "item2"],
 		"favourite_Items": ["item1", "item2"],
 		"recently_Viewed_Items": ["item1", "item2"],
+		"items_In_Cart": [],
 		"reviews": ["review1", "review2"]
 	},
 
