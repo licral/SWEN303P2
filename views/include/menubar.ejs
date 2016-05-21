@@ -5,8 +5,7 @@
         if (user != "") {
             $("#loggedInButtons").show();
             $("#loggedOutButtons").hide();
-            $("#welcomeUser").val("Welcome, " + user);
-
+            updateCartCount();
         } else {
             $("#loggedInButtons").hide();
             $("#loggedOutButtons").show();
@@ -27,6 +26,14 @@
             }
         }
         return "";
+    }
+
+    function updateCartCount() {
+        $.post('/account/getItemInCartCount',
+            function(data) {
+                $("#itemsInCart").text(data);
+            }
+        );
     }
 
     function logout() {
@@ -61,7 +68,7 @@
 					</ul>
 				</li>
                 <li><a href="/sell">Sell</a></li>
-                <li><a href="/">Favourites</a></li>
+                <li><a href="/favourites">Favourites</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -89,7 +96,7 @@
                     <li> <a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span></a></li>-->
                     <li> <a href="/shopping_cart">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color: #d5d5d5; font-size: 16px"></span>
-                            <span class="badge">2</span>
+                            <span class="badge" id="itemsInCart">0</span>
                         </a>
                     </li>
 

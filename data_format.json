@@ -3,6 +3,7 @@
 		"title" : "Some title",
 		"description" : "Some description",
 		"price" : 20.20,
+		"unitSold": 0,
 		"image" : "some image",
 		"user" : "user name (person who uploaded it)",
 		"timestamp" : "some time stamp",
@@ -22,6 +23,7 @@
 		"selling_Items": ["item1", "item2"],
 		"favourite_Items": ["item1", "item2"],
 		"recently_Viewed_Items": ["item1", "item2"],
+		"items_In_Cart": [],
 		"reviews": ["review1", "review2"]
 	},
 

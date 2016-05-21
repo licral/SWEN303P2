@@ -86,7 +86,7 @@ router.post('/register', function (req, res) {
         console.log("Logged in");
 
         db.collection('users').insert(
-            {"username": username, "password": password, "firstname": firstname, "lastname": lastname},
+            {"username": username, "password": password, "firstname": firstname, "lastname": lastname, "items_In_Cart": [], "favourites":[]},
             function (err, result) {
                 console.log("Inserted 3 documents into the document collection");
 
@@ -103,5 +103,41 @@ router.post('/register', function (req, res) {
 
 });
 
+router.post('/getItemInCartCount', function (req, res) {
+    var username = req.cookies.isLoggedIn;
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').find({"username": username}).toArray(function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            if (result.length > 0) {
+                console.log(result);
+                res.send(String(result[0].items_In_Cart.length));
+            } else {
+                res.send("0");
+            }
+        });
+    });
+});
+
+router.post('/addItemToCart', function (req, res) {
+    var username = req.cookies.isLoggedIn;
+    var item = req.query.item;
+    
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').update({"username": username}, { $push: {items_In_Cart: item}});
+        console.log("success");
+        res.send("success");
+    });
+});
 
 module.exports = router;

@@ -7,6 +7,18 @@ a {
   color: #00B7FF;
 }
 
+p,h1{
+    word-wrap: break-word;
+}
+
+.container{
+    padding:2%;
+    width:80%;
+}
+
+
+
+
 /* Add a dark background color with a little bit see-through */
 .navbar {
     margin-bottom: 0;
@@ -117,6 +129,27 @@ label.login{
 /*======== ITEM PAGE ==========*/
 .item-image{
     float: left;
+
+}
+
+.glyphicon{
+    top: 3px;
+    padding-right: 10px;
+}
+
+.item-info{
+    width: 70%;
+    float:right;
+    padding: 1%;
+}
+
+.item-button{
+    width: 30%;
+    margin: 0.5%;
+}
+
+.item-quantity{
+    width: 8%;
 }
 /*======= END OF ITEM PAGE ====*/
 
