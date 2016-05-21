@@ -116,8 +116,12 @@ router.post('/getItemInCartCount', function (req, res) {
             }
 
             if (result.length > 0) {
-                console.log(result);
-                res.send(String(result[0].items_In_Cart.length));
+                var totalInCart = 0;
+                console.log(result[0].items_In_Cart);
+                for (var i = 0; i < result[0].items_In_Cart.length; ++i){
+                    totalInCart += Number(result[0].items_In_Cart[i].quantity);
+                }
+                res.send(String(totalInCart));
             } else {
                 res.send("0");
             }
@@ -128,14 +132,19 @@ router.post('/getItemInCartCount', function (req, res) {
 router.post('/addItemToCart', function (req, res) {
     var username = req.cookies.isLoggedIn;
     var item = req.query.item;
-    
+    var quantity = Number(req.query.quantity);
+    console.log("Fields: " + item + " : " + quantity);
     // Use connect method to connect to the Server
     MongoClient.connect(url, function (err, db) {
         if (err) {
             throw err;
         }
         console.log("Item: " + item);
-        db.collection('users').update({"username": username}, { $push: {items_In_Cart: item}});
+        db.collection('users').update({"username": username, "items_In_Cart.itemID" : item},
+            {$inc: { "items_In_Cart.$.quantity" : quantity}}, false, true);
+
+        db.collection('users').update({"username": username, "items_In_Cart.itemID" : {$ne : item}},
+            {$addToSet : { "items_In_Cart" : { "itemID" : item, "quantity": quantity}}});
         console.log("success");
         res.send("success");
     });
