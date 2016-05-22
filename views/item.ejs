@@ -27,11 +27,17 @@
                 }
             }
             function addToCart(itemID){
-                $.post('/account/addItemToCart?item=' + itemID + "&quantity=" +  $("#quantity").val(),
-                    function(data) {
-                        updateCartCount();
-                    }
-                );
+                var user = getCookie("isLoggedIn");
+
+                if (user != "") {
+                    $.post('/account/addItemToCart?item=' + itemID + "&quantity=" + $("#quantity").val(),
+                            function (data) {
+                                updateCartCount();
+                            }
+                    );
+                } else {
+                    alert("Register or Log In to purchase!");
+                }
             }
             function addToFavourites(item){
                 $.post('/favourites/addToFavourites?id=' + item[0] + "&title=" + item[1],
