@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title><%= title %> - <%= page %></title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
@@ -8,19 +8,17 @@
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="../Scripts/scripts.js"></script>
 
 <!-- Creates the menubar as defined in menubar-src -->
 <% include include/menubar.ejs %>
 
 <!-- Page Content -->
 <div class="container">
-    
-	<% include include/carousel.ejs %>
-
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <button onclick="alert(new Date(1232165821544).toDateString());">Click Me!!!</button>
+    <% include include/carousel.ejs %>
+    <div class="well">
+        <h1>Welcome to <%= title %></h1>
+        <h2>Browse and purchase products and register to become a seller!</h2>
+    </div>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -37,5 +35,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
