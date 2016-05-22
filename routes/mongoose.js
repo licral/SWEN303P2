@@ -17,7 +17,6 @@ var schema = new Schema({
     description : String,
     price : Number,
     image: {
-        id: Number,
         data: Buffer,
         contentType: String
     },
