@@ -36,40 +36,6 @@
                 }
             }
         }
-
-
-        function submitItem() {
-            var ids = ["#itemName", "#category", "#price", "#quantity", "#image", "#description"];
-            foundError = false;
-            for(i = 0; i < ids.length; i++){
-                if ($(ids[i]).val().length == 0) {
-                    $(ids[i]).css({"background-color": 'LightPink'});
-                    foundError = true;
-                } else
-                    $(ids[i]).css({"background-color": 'White'});
-            }
-            if (foundError) {
-                $("#errorMsg").show();
-            } else {
-                // submit item for sale
-                $.post('/item/add_item?itemName=' + $(ids[0]).val() +
-                        '&category=' + $(ids[1]).val() +
-                        '&price=' + $(ids[2]).val() +
-                        '&quantity=' + $(ids[3]).val() +
-                        '&description=' + $(ids[5]).val(),
-                        function(data) {
-                            if (data == "true") {
-                                window.location.href = "/";
-                            } else {
-                                $("#errorMsg").show();
-                            }
-                });
-            }
-        }
-
-        function startedTyping(id) {
-            $(id).css({"background-color": 'White'});
-        }
     </script>
 
     <!-- Creates the menubar as defined in menubar-src -->
@@ -77,7 +43,6 @@
 
     <!-- Page Content -->
     <div class="container" id="sellItem">
-        <% include include/carousel.ejs %>
         <h1><%= page %></h1>
 
         <div class="panel panel-danger" id="errorMsg" hidden="true">
