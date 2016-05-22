@@ -9,6 +9,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script>
+            window.onload = function () {
+                var user = getCookie("isLoggedIn");
+
+                $(".favourite").hide();
+                $(".unfavourite").hide();
+                if (user != "") {
+                    var url = window.location.href.split("/");
+                    $.post('/favourites/checkID?id=' + url[url.length-1],
+                    function(result){
+                        if(result == "true"){
+                            $(".unfavourite").show();
+                        } else {
+                            $(".favourite").show();
+                        }
+                    });
+                }
+            }
             function addToCart(itemID){
                 $.post('/account/addItemToCart?item=' + itemID + "&quantity=" +  $("#quantity").val(),
                     function(data) {
@@ -20,14 +37,20 @@
                 $.post('/favourites/addToFavourites?id=' + item[0] + "&title=" + item[1],
                     function(data) {
                         if(data == "success"){
-                            $("#fail").hide();
-                            $("#success").show();
-                        }
-                        else{
-                            $("#success").hide();
-                            $("#fail").show();
+                            $(".favourite").hide();
+                            $(".unfavourite").show();
                         }
                     }
+                );
+            }
+            function removeFromFavourites(item) {
+                $.post('/favourites/removeFromFavourites?id=' + item[0] + "&title=" + item[1],
+                        function(data) {
+                            if(data == "success"){
+                                $(".unfavourite").hide();
+                                $(".favourite").show();
+                            }
+                        }
                 );
             }
         </script>
@@ -58,6 +81,9 @@
                 <button type="button" class="btn btn-default item-button favourite" onclick="addToFavourites(<%=JSON.stringify([id, page])%>)" hidden="true">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                     Favourite
+                </button>
+                <button type="button" class="btn btn-default item-button unfavourite" onclick="removeFromFavourites(<%=JSON.stringify([id, page])%>)" hidden="true">
+                    Unfavourite
                 </button>
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden="true">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

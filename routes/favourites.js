@@ -61,4 +61,64 @@ router.post('/addToFavourites', function (req, res) {
     });
 });
 
+router.post('/removeFromFavourites', function (req, res) {
+    var username = req.cookies.isLoggedIn;
+    var id = req.query.id;
+    var title = req.query.title;
+    console.log(title);
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').find({"username": username}).toArray(function (err, result) {
+            if (err) {
+                throw err;
+            }
+            var found = -1;
+            for(var i = 0; i < result[0].favourites.length; i++){
+                if(result[0].favourites[i].id == id){
+                    found = i;
+                }
+            }
+            if(found >= 0){
+                db.collection('users').update({"username": username}, { $pull: {favourites: {id: id, title: title}}});
+                console.log("Removed from Favourites");
+                res.send("success");
+            }
+            else{
+                console.log("Item not found in favourites");
+                res.send("0");
+            }
+        });
+    });
+});
+
+router.post('/checkID', function(req, res){
+    var id = req.query.id;
+    var username = req.cookies.isLoggedIn;
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').find({"username": username}).toArray(function (err, result) {
+            if (err) {
+                throw err;
+            }
+            var found = -1;
+            for(var i = 0; i < result[0].favourites.length; i++){
+                if(result[0].favourites[i].id == id){
+                    found = i;
+                }
+            }
+            if(found >= 0){
+                res.send("true");
+            }
+            else{
+                res.send("0");
+            }
+        });
+    });
+});
+
 module.exports = router;
