@@ -17,20 +17,22 @@
     <% include include/carousel.ejs %>
     <div class="well">
         <h1>Welcome to <%= title %></h1>
-        <h2>Browse and purchase products and register to become a seller!</h2>
+        <h3>Browse and purchase products and register to become a seller! Join <%=users%> other Expressaholics selling <%=itemCount%> items today!</h3>
     </div>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
         </div>
         <div class="panel-body">
-            <p>Loading Bootstrap...</p>
-            <div class="progress">
-                <div class="progress progress-bar-custom active" role="progressbar" aria-valuenow="80"
-                     aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                    <span class="sr-only">80% Complete</span>
-                </div>
+            <div class="row">
+                <div class="col-sm-4" style="text-align:center"><h4>Browse items</h4></div>
+                <div class="col-sm-4" style="text-align:center"><h4>Save favourites</h4></div>
+                <div class="col-sm-4" style="text-align:center"><h4>Search stuff</h4></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4" style="text-align:center"><h4><a href="/register">Join us today!</a></h4></div>
+                <div class="col-sm-4"></div>
             </div>
         </div>
     </div>
