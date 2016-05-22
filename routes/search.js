@@ -6,14 +6,14 @@ var Item = require('./mongoose');
 /* GET home page. */
 router.post('/', function(req, res, next) {
     var search = req.body.search;
-    console.log(search);
-    Item.find({title:{'$regex': search, $options:'i'}}, function(err, result){
+    Item.find({'title' : {'$regex' : search, '$options' : 'i'}}, function(err, result){
         console.log(result);
         if (err) throw err;
         res.render('search', {
             title: 'Express',
             page : 'Results',
-            results : result
+            items : result,
+            query : search
         });
     });
 });
