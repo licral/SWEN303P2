@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
             page : 'Home',
             items: data
         });        
-    });
+    }).sort({$natural : -1}).limit(5);
     
 });
 
