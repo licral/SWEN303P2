@@ -54,21 +54,26 @@
         </div>
     </div>
 
-    <p align="left">First name</p>
-    <input id="regFirstName" type="text" class="form-control" aria-describedby="sizing-addon1"
-           onkeypress="startedTyping(regFirstName)">
-    <p align="left">Last name</p>
-    <input id="regLastName" type="text" class="form-control" aria-describedby="sizing-addon1"
-           onkeypress="startedTyping(regLastName)">
-    <p align="left">Username</p>
-    <input id="regUsername" type="text" class="form-control" aria-describedby="sizing-addon1"
-           onkeypress="startedTyping(regUsername)">
-    <p align="left">Password</p>
-    <input id="regPassword" type="text" class="form-control" aria-describedby="sizing-addon1"
-           onkeypress="startedTyping(regPassword)">
-    <p align="left">Confirm password</p>
-    <input id="regConfirm" type="text" class="form-control" aria-describedby="sizing-addon1"
-           onkeypress="startedTyping(regConfirm)">
+    <fieldset class="form-group" align="left">
+        <label for="regFirstName">First name</label>
+        <input type="text" class="form-control" id="regFirstName" placeholder="Enter first name" name="regFirstName" required>
+    </fieldset>
+    <fieldset class="form-group" align="left">
+        <label for="regLastName">Last name</label>
+        <input type="text" class="form-control" id="regLastName" placeholder="Enter last name" name="regLastName" required>
+    </fieldset>
+    <fieldset class="form-group" align="left">
+        <label for="regUsername">Username</label>
+        <input type="text" class="form-control" id="regUsername" placeholder="Enter username" name="regUsername" required>
+    </fieldset>
+    <fieldset class="form-group" align="left">
+        <label for="regPassword">Password</label>
+        <input type="password" class="form-control" id="regPassword" placeholder="Enter password" name="regPassword" required>
+    </fieldset>
+    <fieldset class="form-group" align="left">
+        <label for="regConfirm">Confirm password</label>
+        <input type="password" class="form-control" id="regConfirm" placeholder="Confirm password" name="regConfirm" required>
+    </fieldset>
     <button type="button" class="btn btn-default btn-lg" onclick="registerUser();">Register</button>
 </div>
 

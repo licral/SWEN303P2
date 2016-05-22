@@ -35,18 +35,20 @@
 			<p>Either the username or the password is incorrect</p>
 		</div>
 	</div>
-	
-	<p align="left">Username</p>
-	<input id="loginUser" type="text" class="form-control" aria-describedby="sizing-addon1">
-	<p align="left">Password</p>
-	<input id="loginPassword" type="text" class="form-control" aria-describedby="sizing-addon1">
+
+	<fieldset class="form-group" align="left">
+		<label for="loginUser">Username</label>
+		<input type="text" class="form-control" id="loginUser" placeholder="Enter username" name="loginUser" required>
+	</fieldset>
+	<fieldset class="form-group" align="left">
+		<label for="loginPassword">loginPassword</label>
+		<input type="password" class="form-control" id="loginPassword" placeholder="Enter password" name="loginPassword" required>
+	</fieldset>
 	<button type="button" class="btn btn-default btn-lg" onclick="logUserIn();">Log In</button>
 
 	<div class="checkbox">
 		<label class="login"><input type="checkbox" value="">Remember Me</label>
 	</div>
-	<a href="#">Forgot Password</a>
-	</br>
 	<a href="/register">Don't have an account? Click to sign up!</a>
 </div>
 </body>
