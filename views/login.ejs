@@ -12,7 +12,8 @@
 	function logUserIn(){
 		var user = $("#loginUser").val();
 		var password = $("#loginPassword").val();
-		$.post('/account/validate?username=' + user + '&password=' + password,
+		var stayLoggedIn = $("#loginCheckbox").is(':checked');
+		$.post('/account/validate?username=' + user + '&password=' + password + "&stayLoggedIn=" + stayLoggedIn,
 				function(data) {
 					if (data == "true") {
 						window.location.href = "/";
@@ -47,7 +48,7 @@
 	<button type="button" class="btn btn-default btn-lg" onclick="logUserIn();">Log In</button>
 
 	<div class="checkbox">
-		<label class="login"><input type="checkbox" value="">Remember Me</label>
+		<label class="login"><input type="checkbox" id="loginCheckbox" value="">Remember Me</label>
 	</div>
 	<a href="/register">Don't have an account? Click to sign up!</a>
 </div>

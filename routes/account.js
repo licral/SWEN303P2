@@ -42,7 +42,8 @@ router.get('/', function (req, res) {
 router.post('/validate', function (req, res) {
     var username = req.query.username;
     var password = req.query.password;
-
+    var stayLoggedIn = req.query.stayLoggedIn;
+    console.log(stayLoggedIn);
     // Use connect method to connect to the Server
     MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -53,7 +54,12 @@ router.post('/validate', function (req, res) {
                 throw err;
             }
             if (result.length > 0) {
-                res.cookie('isLoggedIn', username, {overwrite: true, httpOnly: false});
+                if (stayLoggedIn == "true") {
+                    var time = 30 * 24 * 60 * 60; // 30 days expiry
+                    res.cookie('isLoggedIn', username, {overwrite: true, httpOnly: false, maxAge: time});
+                } else {
+                    res.cookie('isLoggedIn', username, {overwrite: true, httpOnly: false});
+                }
                 res.send("true");
             } else {
                 console.log("Login failed");
