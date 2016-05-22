@@ -8,29 +8,7 @@
     <body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script>
-            function addToCart(itemID){
-                $.post('/account/addItemToCart?item=' + itemID + "&quantity=" +  $("#quantity").val(),
-                    function(data) {
-                        updateCartCount();
-                    }
-                );
-            }
-            function addToFavourites(item){
-                $.post('/favourites/addToFavourites?id=' + item[0] + "&title=" + item[1],
-                    function(data) {
-                        if(data == "success"){
-                            $("#fail").hide();
-                            $("#success").show();
-                        }
-                        else{
-                            $("#success").hide();
-                            $("#fail").show();
-                        }
-                    }
-                );
-            }
-        </script>
+        <script><% include include/buyfav.js %></script>
 
         <!-- Creates the menubar as defined in menubar-src -->
         <% include include/menubar.ejs %>
@@ -58,6 +36,9 @@
                 <button type="button" class="btn btn-default item-button favourite" onclick="addToFavourites(<%=JSON.stringify([id, page])%>)" hidden="true">
                     <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                     Favourite
+                </button>
+                <button type="button" class="btn btn-default item-button unfavourite" onclick="removeFromFavourites(<%=JSON.stringify([id, page])%>)" hidden="true">
+                    Unfavourite
                 </button>
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" hidden="true">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

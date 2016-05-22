@@ -45,18 +45,11 @@
     <div class="container" id="sellItem">
         <h1><%= page %></h1>
 
-        <div class="panel panel-danger" id="errorMsg" hidden="true">
-            <div class="panel-heading">Warning</div>
-            <div class="panel-body">
-                <p>Please fill in the highlighted fields</p>
-            </div>
-        </div>
-
         <form action="/sell/add_item" method="POST" name = "itemForm" enctype="multipart/form-data">
             <!-- Item name -->
             <fieldset class="form-group">
                 <label for="itemName">Item Name</label>
-                <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" onkeypress="startedTyping(itemName)" required>
+                <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" required>
                 <small class="text-muted">e.g. Green T-shirt</small>
             </fieldset>
             <!-- End of item name -->
@@ -81,7 +74,7 @@
                 <!-- Price -->
                 <fieldset class="form-group left">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control" id="price" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(price)" onclick="startedTyping(price)" required>
+                    <input type="number" class="form-control" id="price" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(price)" required>
                     <small class="text-muted">e.g. 25.00</small>
                 </fieldset>
                 <!-- End of price -->
@@ -89,7 +82,7 @@
                 <!-- Quantity -->
                 <fieldset class="form-group left">
                     <label for="quantity">Quantity</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="Enter item quantity" name="quantity" min="1" step = "1" onkeypress="startedTyping(quantity)" onclick="startedTyping(quantity)" required>
+                    <input type="number" class="form-control" id="quantity" placeholder="Enter item quantity" name="quantity" min="1" step = "1" required>
                     <small class="text-muted">e.g. 2</small>
                 </fieldset>
                 <!-- End of quantity -->
@@ -97,7 +90,7 @@
                 <!-- Upload image -->
                 <fieldset class="form-group left">
                     <label for="image">File input</label>
-                    <input type="file" class="form-control-file" id="image" name="image" onclick="startedTyping(image)" required>
+                    <input type="file" class="form-control-file" id="image" name="image" required>
                     <small class="text-muted">Image formats can be .jpg or .png</small>
                 </fieldset>
                 <!-- end of upload image -->
@@ -106,7 +99,7 @@
             <!-- Item description -->
             <fieldset class="form-group">
                 <label for="description">Item Description</label>
-                <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" onkeypress="startedTyping(description)" required></textarea>
+                <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" required></textarea>
             </fieldset>
             <!-- End of item description -->
 
