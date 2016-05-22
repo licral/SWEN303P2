@@ -1,40 +1,46 @@
-<div>
-    Sort by
-        <select>
-            <option value="saab">Best Seller</option>
-            <option value="mercedes">Worst Seller</option>
-            <option value="volvo">Highest Price</option>
-            <option value="audi">Lowest Price</option>
-            <option value="volvo">Newest</option>
-            <option value="audi">Oldest</option>
-        </select>
-</div>
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Delete</th>
-        <th>Item</th>
-        <th>Edit</th>
-        <th>Stock</th>
-        <th>Price</th>
-        <th>Units Sold</th>
-        <th>Money Made</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% for(var i=0; i<myProducts.length; i++) {%>
+<%if (myProducts.length > 0){%>
+    <div>
+        Sort by
+            <select>
+                <option value="saab">Best Seller</option>
+                <option value="mercedes">Worst Seller</option>
+                <option value="volvo">Highest Price</option>
+                <option value="audi">Lowest Price</option>
+                <option value="volvo">Newest</option>
+                <option value="audi">Oldest</option>
+            </select>
+    </div>
+    <table class="table table-bordered">
+        <thead>
         <tr>
-            <td style="width: 30px;"><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #ff0000; font-size: 20px; position: relative; top: 40%; left: 40%;"></span></a></td>
-            <td style="width: auto;"><a href="/browse/item/<%=myProducts[i]._id%>"><%= myProducts[i].title %></a></td>
-            <td style="width: 30px;"><a href="/editItem/<%=myProducts[i]._id%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #11aa44; font-size: 20px; position: relative; top: 40%; left: 20%;"></span></a></td>
-            <td style="width: 50px;"><%= myProducts[i].stock %></td>
-            <td style="width: 50px;"><%= "$" + myProducts[i].price %></td>
-            <td style="width: 50px;">1</td>
-            <td style="width: 50px;"><%= "$" + myProducts[i].price %></td>
+            <th>Delete</th>
+            <th>Item</th>
+            <th>Edit</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Units Sold</th>
+            <th>Money Made</th>
         </tr>
-    <% } %>
-    <tfoot>
-    <td colspan="6"><p style="text-align:right;">Total</p></td>
-    <td ><p>$64.00</p></td>
-    </tfoot>
-</table>
+        </thead>
+        <tbody>
+        <% for(var i=0; i<myProducts.length; i++) {%>
+            <tr>
+                <td style="width: 30px;"><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #ff0000; font-size: 20px; position: relative; top: 40%; left: 40%;"></span></a></td>
+                <td style="width: auto;"><a href="/browse/item/<%=myProducts[i]._id%>"><%= myProducts[i].title %></a></td>
+                <td style="width: 30px;"><a href="/editItem/<%=myProducts[i]._id%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #11aa44; font-size: 20px; position: relative; top: 40%; left: 20%;"></span></a></td>
+                <td style="width: 50px;"><%= myProducts[i].stock %></td>
+                <td style="width: 50px;"><%= "$" + myProducts[i].price %></td>
+                <td style="width: 50px;">1</td>
+                <td style="width: 50px;"><%= "$" + myProducts[i].price %></td>
+            </tr>
+        <% } %>
+        <tfoot>
+        <td colspan="6"><p style="text-align:right;">Total</p></td>
+        <td ><p>$64.00</p></td>
+        </tfoot>
+    </table>
+<%} else {%>
+    <div>
+        <p>You currently have no items for sale</p>
+    </div>
+<%}%>
