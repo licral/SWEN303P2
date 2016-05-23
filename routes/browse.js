@@ -38,7 +38,7 @@ router.get('/:cat/:page', function(req, res){
     console.log(page);
     var skipVal = ((page-1) * 10);
     console.log(skipVal);
-    Item.find({category:{'$regex': cat,$options:'i'}}).skip(skipVal).limit(10).sort({title:1}).exec(function(err, items){
+    Item.find({category:{'$regex': cat,$options:'i'}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
         Item.count({category:{'$regex': cat,$options:'i'}}, function(err, count){
             if (err) throw err;
             res.render('technology', {
