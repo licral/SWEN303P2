@@ -59,11 +59,14 @@ router.get('/image/:id', function(req, res){
 router.get('/:cat/:page', function(req, res){
     var subcats = {};
     cat = req.params.cat;
+    console.log(cat);
         for (var category in categories){
-        if (cat === category.toLowerCase()){
+        if (cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
             subcats = categories[category];
+            cat = category;
         }
     }
+    console.log(cat);
     console.log(subcats);
     page = req.params.page;
     console.log(page);
