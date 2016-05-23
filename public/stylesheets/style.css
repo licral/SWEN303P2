@@ -215,6 +215,10 @@ pre{
     border:none;
 }
 
+p.result{
+    padding-top:10px;
+}
+
 p.price{
     width : 50%;
     float:right;
