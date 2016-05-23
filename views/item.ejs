@@ -31,6 +31,7 @@
                     <label for="quantity">Quantity</label>
                     <input type="number" class="form-control item-quantity" id="quantity" name="quantity" min="1" step = "1" value="1">
                 </fieldset>
+                <div id="addedToCart" class="alert alert-success" role="alert" hidden="true">Item added to cart!</div>
                 <button type="button" class="btn btn-success btn-lg item-button" onclick="addToCart(<%=JSON.stringify(id)%>)">Add to cart</button>
                 <br>
                 <button type="button" class="btn btn-default item-button favourite" onclick="addToFavourites(<%=JSON.stringify([id, page])%>)" hidden="true">
@@ -41,7 +42,7 @@
                     Remove from Favourites
                 </button>
                 <hr>
-                <p><%= description %></p>
+                <pre><%= description %></pre>
             </div>
         </div>
     </body>

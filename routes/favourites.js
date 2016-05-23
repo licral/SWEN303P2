@@ -65,7 +65,6 @@ router.post('/removeFromFavourites', function (req, res) {
     var username = req.cookies.isLoggedIn;
     var id = req.query.id;
     var title = req.query.title;
-    console.log(title);
     // Use connect method to connect to the Server
     MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -97,6 +96,7 @@ router.post('/removeFromFavourites', function (req, res) {
 router.post('/checkID', function(req, res){
     var id = req.query.id;
     var username = req.cookies.isLoggedIn;
+    console.log(id);
     MongoClient.connect(url, function (err, db) {
         if (err) {
             throw err;
