@@ -83,7 +83,8 @@ router.get('/:cat/:page', function(req, res){
                 items:  items,
                 count: count,
                 start: skipVal,
-                subcats: subcats
+                categories : [cat],
+                subcats: subcats,
             });
         });
     });
@@ -92,7 +93,6 @@ router.get('/:cat/:page', function(req, res){
 router.get('/:cat/:subcat/:page', function(req, res){
     var cats = [];
     var subcats = {};
-    console.log(cats);
         for (var category in categories){
         if (req.params.cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
             cats.push(category);
@@ -110,8 +110,8 @@ router.get('/:cat/:subcat/:page', function(req, res){
     console.log(page);
     var skipVal = ((page-1) * 10);
     console.log(skipVal);
-    Item.find({category:{'$regex': cats[1],$options:'i'}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
-        Item.count({category:{'$regex': cats[1],$options:'i'}}, function(err, count){
+    Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
+        Item.count({category: {$all : cats}}, function(err, count){
             if (err) throw err;
             res.render('technology', {
                 title: cats[1],
@@ -119,6 +119,48 @@ router.get('/:cat/:subcat/:page', function(req, res){
                 items:  items,
                 count: count,
                 start: skipVal,
+                categories : cats,
+                subcats: subcats
+            });
+        });
+    });
+});
+
+
+router.get('/:cat/:subcat/:subsubcat/:page', function(req, res){
+    var cats = [];
+    var subcats = [];
+        for (var category in categories){
+        if (req.params.cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
+            cats.push(category);
+            for (var subcatinarray in categories[category]){
+                 if (req.params.subcat === subcatinarray.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
+                    cats.push(subcatinarray);
+                    categories[category][subcatinarray].forEach(function(subsubcatinarray){
+                        if (req.params.subsubcat === subsubcatinarray.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
+                            cats.push(subsubcatinarray);
+                        }
+                    });
+                }
+            }
+        }
+    }
+    console.log(cats);
+    console.log(subcats);
+    page = req.params.page;
+    console.log(page);
+    var skipVal = ((page-1) * 10);
+    console.log(skipVal);
+    Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
+        Item.count({category: {$all : cats}}, function(err, count){
+            if (err) throw err;
+            res.render('technology', {
+                title: cats[2],
+                page : 'Browse ' + cats[2],
+                items:  items,
+                count: count,
+                start: skipVal,
+                categories : cats,
                 subcats: subcats
             });
         });

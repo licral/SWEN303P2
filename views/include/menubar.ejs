@@ -42,9 +42,9 @@
 
 </script>
 
-<% 
 
-var categories = {
+<!--idk what's wrong with categories.js but this works lol -->
+<% var categories = {
     "Clothing": {
         "Men": ["Shirts", "Hoodies & Sweatshirts", "Jackets & Coats", "Sweaters", "Costumes", "Activewear", "Trousers", "Socks", "Suits & Sport Coats", "Vests", "Jeans", "Shorts", "Underwear", "Swim Trunks", "Pyjamas & Robes", "Ponchos", "Kilts"],
         "Women": ["Tops & Tees", "Dresses", "Lingerie", "Jackets & Coats", "Skirts", "Sweaters", "Hoodies & Sweatshirts", "Swimwear", "Costumes", "Trousers & Capris", "Socks & Hosiery", "Shorts & Skorts", "Pyjamas & Robes", "Activewear", "Leggings", "Jeans", "Ponchos", "Jumpsuits & Rompers", "Blazers", "Suits", "Bodysuits", "Overalls"],
@@ -61,6 +61,7 @@ var categories = {
         "Craft supplies": ["Knitting", "Bakeware", "Jewellery and beading"]
     }
 } %>
+
 <!-- The actual html code -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -72,7 +73,7 @@ var categories = {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="../../images/logo.png" style="width:145px;"></a>
+            <a class="navbar-brand" href="/"><img src="/images/logo.png" style="width:145px;"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -82,9 +83,9 @@ var categories = {
                 <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-                    <% for(var cat in categories) {%>
-                    <% var catURL = cat.replace(new RegExp(' ', 'g'), '-').toLowerCase();%>
-                       <li><a href="/browse/<%= catURL%>/1"><%= cat %></a></li>
+                    <% for(var category in categories) {%>
+                    <% var categoryURL = category.replace(new RegExp(' ', 'g'), '-').toLowerCase();%>
+                       <li><a href="/browse/<%= categoryURL%>/1"><%= category %></a></li>
                     <% } %>
 					</ul>
 				</li>

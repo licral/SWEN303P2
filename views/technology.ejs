@@ -39,27 +39,29 @@
 	<% include include/menubar.ejs %>
 
 
-	<%function capitalizeFirstLetter(string) {
-		return string.charAt(0).toUpperCase() + string.slice(1);
-	}%>
-
     <!--Upload some images via sell then check this out! -->
 	<div class="container">
 
 		<div class="row">
 
 			<div class="col-lg-12" id = header>
-				<h1 class="page-header" style ="font-family: 'Raleway', sans-serif"><%=capitalizeFirstLetter(title)%></h1>
+				<h1 class="page-header" style ="font-family: 'Raleway', sans-serif"><%=title%></h1>
 			</div>
 
 			<!-- Page Content -->
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Private</a></li>
-				<li><a href="#">Pictures</a></li>
-				<li class="active">Vacation</li>
+				<li><a href="/">Home</a></li>
+				<% for (var i = 0; i < categories.length; i++){%>
+					<li><a href="/browse
+					<% for (var j =0; j <= i; j++){%>
+						/<%=categories[j].replace(new RegExp(' ', 'g'), '-').toLowerCase()%>
+					<%}%>
+						/1"><%=categories[i]%></a></li>
+
+				<%}%>
 			</ul>
 
+			<%if(subcats.length > 0){%>
 			<div class="panel-group">
 			    <div class="panel panel-default">
 			      <div class="panel-heading">
@@ -77,11 +79,12 @@
 			      </div>
 			    </div>
 			  </div>
+			  <%}%>
 
 			<p class = "results">Browsing <%=start+1%>-<%=start+items.length%> of <%=count%> listings</p>
 
             <% items.forEach(function(item) { %>
-            <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
+            <div class="col-lg-3 col-md-4 col-xs-12" id = entry>
                 <a class="entry" href="/browse/item/<%= item._id %>">
                 	<div class="image-wrap">
                    <img src="/browse/image/<%= item._id %>" alt="">
