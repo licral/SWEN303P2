@@ -31,6 +31,8 @@ var Item = new Schema({
     Description : String,
     Image : ObjectId,
     Timestamp : Date,
+    unitsSold : Number,
+    MoneyMade : Number,
     Reviews : ObjectId
 });
 
@@ -42,6 +44,8 @@ router.post('/add_item', function (req, res) {
         var category3 = req.query.category3;
         var price = req.query.sellPrice;
         var stock = req.query.quantity;
+        var unitsSold = req.query.unitsSold;
+        var MoneyMade = req.query.MoneyMade;
         var description = req.query.itemDescription;
         var image = req.query.image;
         var timestamp = new Date();
@@ -57,7 +61,8 @@ router.post('/add_item', function (req, res) {
         }
 
         db.collection('items').insert(
-            {"seller": seller, "itemName": itenName, "category":category, "price":price, "stock": stock, "description": description, "image": image, "timestamp": timestamp, "reviews": reviews},
+            {"seller": seller, "itemName": itemName, "category":category, "price":price, "stock": stock, "description": description,
+                "image": image, "timestamp": timestamp, "reviews": reviews, "unitsSold": 0, "MoneyMade": 0},
             function (err, result) {
                 console.log("Inserted 3 documents into the document collection");
 
