@@ -5,14 +5,16 @@ window.onload = function () {
     $(".unfavourite").hide();
     if (user != "") {
         var url = window.location.href.split("/");
-        $.post('/favourites/checkID?id=' + url[url.length-1],
-            function(result){
-                if(result == "true"){
-                    $(".unfavourite").show();
-                } else {
-                    $(".favourite").show();
-                }
-            });
+        if(url[url.length-1] != "search"){
+            $.post('/favourites/checkID?id=' + url[url.length-1],
+                function(result){
+                    if(result == "true"){
+                        $(".unfavourite").show();
+                    } else {
+                        $(".favourite").show();
+                    }
+                });
+        }
     }
 }
 function addToCart(itemID){
@@ -27,6 +29,7 @@ function addToCart(itemID){
         $.post('/account/addItemToCart?item=' + itemID + "&quantity=" + quantity,
             function (data) {
                 updateCartCount();
+                $("#addedToCart").show();
             }
         );
     } else {

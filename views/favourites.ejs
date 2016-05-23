@@ -17,6 +17,8 @@
         <div class="container">
             <h1><%= page %></h1>
 
+            <div id="addedToCart" class="alert alert-success" role="alert" hidden="true">Item added to cart!</div>
+
             <div class="row">
                 <% if(items.length == 0){ %>
                     <p>Nothing in favourites</p>
@@ -38,7 +40,7 @@
                             </div>
                         </div>
                     <% }); %>
-                    <% } %>
+                <% } %>
             </div>
         </div>
     </body>

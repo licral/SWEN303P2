@@ -8,6 +8,7 @@
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script><% include include/buyfav.js %></script>
 
 <!-- Creates the menubar as defined in menubar-src -->
 <% include include/menubar.ejs %>
@@ -16,16 +17,23 @@
 <div class="container">
     <h1><%= page %></h1>
 
+    <div id="addedToCart" class="alert alert-success" role="alert" hidden="true">Item added to cart!</div>
+
     <div class="row">
         <% if(items.length == 0){ %>
-        <p>No Search Results for '<%= query %>'</p>
+            <p>No Search Results for '<%= query %>'</p>
         <%} else {%>
         <% items.forEach(function(item) { %>
-        <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-            <p class = item><%= item.title %></p>
-            <a class="entry" href="../browse/item/<%= item._id %>">
-                <img class="img-responsive" src="../browse/image/<%= item._id %>" alt="">
-            </a>
+        <div class="col-sm-6 col-md-4 fav-item">
+            <div class="thumbnail">
+                <a class="entry" href="../browse/item/<%= item.id %>">
+                    <img class="img-responsive" src="../browse/image/<%= item.id %>" alt="">
+                </a>
+                <div class="caption" id="test">
+                    <h3><%= item.title %></h3>
+                    <button type="button" class="btn btn-success btn-lg fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
+                </div>
+            </div>
         </div>
         <% }); %>
         <% } %>
