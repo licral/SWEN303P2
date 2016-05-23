@@ -4,6 +4,7 @@
         <title><%= title %> - <%= page %></title>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
         <link rel='stylesheet' href='../../stylesheets/style.css'/>
+        <% include include/fonts.ejs%>
     </head>
     <body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -26,22 +27,18 @@
                     <p>Nothing in favourites</p>
                 <%} else {%>
                     <% items.forEach(function(item) { %>
-                        <div class="col-sm-6 col-md-4 fav-item">
-                            <div class="thumbnail">
-                                <a class="entry" href="../browse/item/<%= item.id %>">
-                                    <div class="image-wrap">
-                                        <img src="../browse/image/<%= item.id %>" alt="">
-                                    </div>
-                                </a>
-                                <div class="caption">
-                                    <h3><%= item.title %></h3>
-                                    <button type="button" class="btn btn-success btn-lg fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
-                                    <br>
-                                    <button type="button" class="btn btn-default fav-button" onclick="removeFromFavourites(<%=JSON.stringify([item.id, item.title, "fav"])%>)">
-                                        Remove from Favourites
-                                    </button>
+                        <div class="col-lg-3 col-md-4 col-xs-12" id = entry>
+                            <a class="entry" href="../browse/item/<%= item.id %>">
+                                <div class="image-wrap">
+                                    <img src="../browse/image/<%= item.id %>" alt="">
                                 </div>
-                            </div>
+                            </a>
+                            <p class = item><%= item.title %></p>
+                            <button type="button" class="btn btn-success btn-lg fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
+                            <br>
+                            <button type="button" class="btn btn-default fav-button" onclick="removeFromFavourites(<%=JSON.stringify([item.id, item.title, "fav"])%>)">
+                                Remove from Favourites
+                            </button>
                         </div>
                     <% }); %>
                 <% } %>
