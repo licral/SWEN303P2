@@ -26,7 +26,7 @@ var categories = {
     "Arts and Crafts": {
         "Jewellery": ["Earrings", "Necklaces", "Rings"],
         "Fabric": ["Quilts", "Embroidery", "Crochet"],
-        "Craft supplies": ["Knitting", "Bakeware", "Jewellery and beading"]
+        "Craft supplies": ["Knitting", "Bakeware", "Jewellery and Beading"]
     }
 }
 

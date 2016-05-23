@@ -9,9 +9,9 @@ var categories = {
         "Gadgets": ["Binoculars", "Cameras"],
         "Computers": ["Desktops", "Laptops"]
     },
-    "Arts and Crafts": {
+    "Arts & Crafts": {
         "Jewellery": ["Earrings", "Necklaces", "Rings"],
         "Fabric": ["Quilts", "Embroidery", "Crochet"],
-        "Craft supplies": ["Knitting", "Bakeware", "Jewellery and Beading"]
+        "Craft supplies": ["Knitting", "Bakeware", "Jewellery & Beading"]
     }
 }
