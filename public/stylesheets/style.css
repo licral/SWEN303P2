@@ -169,6 +169,7 @@ label.login{
     border: 1px solid rgb(16, 27, 245);
     border-radius: 5px;
     border-color: #555;
+    padding:0px;
     height:300px !important;
 }
 .image-wrap {
@@ -181,18 +182,32 @@ label.login{
         width: 100%;
 }
 p.item{
-    text-align:center;
+    width:100%;
+    text-align:left;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 p.stock{
     width : 50%;
     float:left;
     text-align:left;
+     margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 p.price{
     width : 50%;
     float:right;
-    text-align:right
-}
+    text-align:right;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}    
+
 
