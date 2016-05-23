@@ -54,15 +54,17 @@ router.get('/image/:id', function(req, res){
         res.writeHead(200, {'Content-Type' : 'image/jpg'});
         res.end(img, 'binary');
     });
-})
+});
 
 router.get('/:cat/:page', function(req, res){
-    var subcats = {};
+    var subcats = [];
     cat = req.params.cat;
     console.log(cat);
         for (var category in categories){
         if (cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
-            subcats = categories[category];
+            for (var subcategory in categories[category]){
+                subcats.push(subcategory);
+            }
             cat = category;
         }
     }
@@ -85,6 +87,42 @@ router.get('/:cat/:page', function(req, res){
             });
         });
     });
-})
+});
+
+router.get('/:cat/:subcat/:page', function(req, res){
+    var cats = [];
+    var subcats = {};
+    console.log(cats);
+        for (var category in categories){
+        if (req.params.cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
+            cats.push(category);
+            for (var subcatinarray in categories[category]){
+                 if (req.params.subcat === subcatinarray.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
+                    cats.push(subcatinarray);
+                    subcats = categories[category][subcatinarray];
+                }
+            }
+        }
+    }
+    console.log(cats);
+    console.log(subcats);
+    page = req.params.page;
+    console.log(page);
+    var skipVal = ((page-1) * 10);
+    console.log(skipVal);
+    Item.find({category:{'$regex': cats[1],$options:'i'}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
+        Item.count({category:{'$regex': cats[1],$options:'i'}}, function(err, count){
+            if (err) throw err;
+            res.render('technology', {
+                title: cats[1],
+                page : 'Browse ' + cats[1],
+                items:  items,
+                count: count,
+                start: skipVal,
+                subcats: subcats
+            });
+        });
+    });
+});
 
 module.exports = router;
