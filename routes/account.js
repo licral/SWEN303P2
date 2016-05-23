@@ -18,6 +18,7 @@ var url = 'mongodb://localhost:27017/SWEN303';
  *///////////////////////////////////////////////////////////////////////////////////
 
 router.get('/', function (req, res) {
+    var username = req.cookies.isLoggedIn;
     MongoClient.connect(url, function (err, db) {
         if (err) {
             throw err;
@@ -27,10 +28,19 @@ router.get('/', function (req, res) {
                 throw err;
             }
             console.log(result);
-            res.render('account', {
-                title: 'Express',
-                page : 'Account',
-                myProducts: result
+
+            db.collection('users').find({"username": username}).toArray(function (err2, result2) {
+                if (err2) {
+                    throw err2;
+                }
+                if (result2.length > 0) {
+                     res.render('account', {
+                     title: 'Express',
+                     page : 'Account',
+                     myProducts: result,
+                     purchase: result2[0].purchaseHistory
+                     });
+                }
             });
         });
     });
@@ -92,7 +102,7 @@ router.post('/register', function (req, res) {
         console.log("Logged in");
 
         db.collection('users').insert(
-            {"username": username, "password": password, "firstname": firstname, "lastname": lastname, "items_In_Cart": [], "favourites":[]},
+            {"username": username, "password": password, "firstname": firstname, "lastname": lastname, "items_In_Cart": [], "favourites":[], "purchaseHistory": []},
             function (err, result) {
                 console.log("Inserted 3 documents into the document collection");
 

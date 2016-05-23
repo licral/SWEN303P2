@@ -35,7 +35,8 @@ router.get('/', function(req, res, next) {
                 if (err2) {
                     throw err2;
                 }
-                console.log(resultItems[0]);
+                console.log("resultItems[0]: " + resultItems[0]);
+
                 for (var i = 0; i < result[0].items_In_Cart.length; i++) {
                     db.collection('items').update({_id: {$in: myArray}},
                         {
@@ -43,6 +44,28 @@ router.get('/', function(req, res, next) {
                                 "stock": -result[0].items_In_Cart[i].quantity,
                                 "unitsSold": result[0].items_In_Cart[i].quantity,
                                 "MoneyMade": result[0].items_In_Cart[i].quantity * resultItems[i].price
+                            }
+                        });
+
+                    // update Purchase history
+                    db.collection('users').update({"username": username, "purchaseHistory.itemID" : result[0].items_In_Cart[i].itemID},
+                        {
+                            $inc: {
+                                "purchaseHistory.$.quantity" : result[0].items_In_Cart[i].quantity,
+                                "purchaseHistory.$.price" : resultItems[i].price * result[0].items_In_Cart[i].quantity
+                            }
+                        });
+
+
+                    db.collection('users').update({"username": username, "purchaseHistory.itemID" : {$ne : result[0].items_In_Cart[i].itemID}},
+                        {
+                            $addToSet : {
+                                "purchaseHistory" : {
+                                    "itemID" :  result[0].items_In_Cart[i].itemID,
+                                    "title" :  resultItems[i].title,
+                                    "quantity": result[0].items_In_Cart[i].quantity,
+                                    "price": resultItems[i].price * result[0].items_In_Cart[i].quantity
+                                }
                             }
                         });
                 }

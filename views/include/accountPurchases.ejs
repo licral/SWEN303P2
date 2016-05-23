@@ -1,24 +1,39 @@
-<div>
-    Sort by
-    <select>
-        <option value="volvo">Most Recent</option>
-        <option value="audi">Oldest</option>
-        <option value="volvo">Highest Price</option>
-        <option value="audi">Lowest Price</option>
-    </select>
-</div>
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Item</th>
-        <th>Quantity</th>
-        <th>Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td style="width: auto;"><a href="#">Spiral Vegetable Cutter</a></td>
-        <td style="width: 30px;">1</td>
-        <td style="width: 50px;">$699.99</td>
-    </tr>
-</table>
+<% if (purchase.length > 0){%>
+    <!--div>
+        Sort by
+        <select>
+            <option value="volvo">Most Recent</option>
+            <option value="audi">Oldest</option>
+            <option value="volvo">Highest Price</option>
+            <option value="audi">Lowest Price</option>
+        </select>
+    </div>-->
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i<purchase.length; i++) {%>
+        <tr>
+            <td style="width: auto;"><a href="/browse/item/<%=purchase[i].itemID%>"><%=purchase[i].title%></a></td>
+            <td style="width: 50px;"><%= purchase[i].quantity %></td>
+            <td style="width: 50px;"><%= "$" + purchase[i].price %></td>
+        </tr>
+        <% } %>
+
+        <tfoot>
+        <td colspan="2"><p style="text-align:right;">Total</p></td>
+        <%var totalPrice = 0;%>
+        <%for(var i=0; i<purchase.length; i++) {%>
+        <%    totalPrice += Number(purchase[i].price);%>
+        <%}%>
+        <td><p>$<%= totalPrice%></p></td>
+        </tfoot>
+    </table>
+<% } else { %>
+    <p>You haven't purchased anything.</p>
+<%}%>
