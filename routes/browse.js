@@ -23,10 +23,10 @@ var categories = {
         "Gadgets": ["Binoculars", "Cameras"],
         "Computers": ["Desktops", "Laptops"]
     },
-    "Arts and Crafts": {
+    "Arts & Crafts": {
         "Jewellery": ["Earrings", "Necklaces", "Rings"],
         "Fabric": ["Quilts", "Embroidery", "Crochet"],
-        "Craft supplies": ["Knitting", "Bakeware", "Jewellery and Beading"]
+        "Craft supplies": ["Knitting", "Bakeware", "Jewellery & Beading"]
     }
 }
 
@@ -57,9 +57,16 @@ router.get('/image/:id', function(req, res){
 });
 
 router.get('/:cat/:page', function(req, res){
+    var sortMethod = req.query.sortMethod;
+    var sortOrder = req.query.sortOrder;
+     if (sortOrder == null){
+        sortOrder = 1;
+    }
+    if (sortMethod == null){
+        sortMethod = 'title';
+    }
     var subcats = [];
     cat = req.params.cat;
-    console.log(cat);
         for (var category in categories){
         if (cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
             for (var subcategory in categories[category]){
@@ -68,13 +75,11 @@ router.get('/:cat/:page', function(req, res){
             cat = category;
         }
     }
-    console.log(cat);
-    console.log(subcats);
     page = req.params.page;
-    console.log(page);
-    var skipVal = ((page-1) * 10);
-    console.log(skipVal);
-    Item.find({category:{'$regex': cat,$options:'i'}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
+    var skipVal = ((page-1) * 20);
+    var sortQuery = {};
+    sortQuery[sortMethod] = sortOrder;
+    Item.find({category:{'$regex': cat,$options:'i'}}).skip(skipVal).limit(20).sort(sortQuery).exec(function(err, items){
         Item.count({category:{'$regex': cat,$options:'i'}}, function(err, count){
             if (err) throw err;
             res.render('technology', {
@@ -85,12 +90,21 @@ router.get('/:cat/:page', function(req, res){
                 start: skipVal,
                 categories : [cat],
                 subcats: subcats,
+                url: req.url
             });
         });
     });
 });
 
 router.get('/:cat/:subcat/:page', function(req, res){
+     var sortMethod = req.query.sortMethod;
+    var sortOrder = req.query.sortOrder;
+     if (sortOrder == null){
+        sortOrder = 1;
+    }
+    if (sortMethod == null){
+        sortMethod = 'title';
+    }
     var cats = [];
     var subcats = {};
         for (var category in categories){
@@ -104,13 +118,12 @@ router.get('/:cat/:subcat/:page', function(req, res){
             }
         }
     }
-    console.log(cats);
-    console.log(subcats);
     page = req.params.page;
     console.log(page);
-    var skipVal = ((page-1) * 10);
-    console.log(skipVal);
-    Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
+    var skipVal = ((page-1) * 20);
+    var sortQuery = {};
+    sortQuery[sortMethod] = sortOrder;
+    Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort(sortQuery).exec(function(err, items){
         Item.count({category: {$all : cats}}, function(err, count){
             if (err) throw err;
             res.render('technology', {
@@ -120,7 +133,8 @@ router.get('/:cat/:subcat/:page', function(req, res){
                 count: count,
                 start: skipVal,
                 categories : cats,
-                subcats: subcats
+                subcats: subcats,
+                url: req.url
             });
         });
     });
@@ -128,8 +142,17 @@ router.get('/:cat/:subcat/:page', function(req, res){
 
 
 router.get('/:cat/:subcat/:subsubcat/:page', function(req, res){
+     var sortMethod = req.query.sortMethod;
+    var sortOrder = req.query.sortOrder;
+     if (sortOrder == null){
+        sortOrder = 1;
+    }
+    if (sortMethod == null){
+        sortMethod = 'title';
+    }
     var cats = [];
     var subcats = [];
+
         for (var category in categories){
         if (req.params.cat === category.replace(new RegExp(' ', 'g'), '-').toLowerCase()){
             cats.push(category);
@@ -145,13 +168,11 @@ router.get('/:cat/:subcat/:subsubcat/:page', function(req, res){
             }
         }
     }
-    console.log(cats);
-    console.log(subcats);
     page = req.params.page;
-    console.log(page);
-    var skipVal = ((page-1) * 10);
-    console.log(skipVal);
-    Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort({title:1}).exec(function(err, items){
+    var skipVal = ((page-1) * 20);
+    var sortQuery = {};
+    sortQuery[sortMethod] = sortOrder;
+    Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort(sortQuery).exec(function(err, items){
         Item.count({category: {$all : cats}}, function(err, count){
             if (err) throw err;
             res.render('technology', {
@@ -161,7 +182,8 @@ router.get('/:cat/:subcat/:subsubcat/:page', function(req, res){
                 count: count,
                 start: skipVal,
                 categories : cats,
-                subcats: subcats
+                subcats: subcats,
+                url: req.url
             });
         });
     });

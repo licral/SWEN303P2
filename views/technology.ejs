@@ -52,11 +52,12 @@
 			<ul class="breadcrumb">
 				<li><a href="/">Home</a></li>
 				<% for (var i = 0; i < categories.length; i++){%>
+				<%var params = url.substring(url.indexOf('?')+1);%>
 					<li><a href="/browse
 					<% for (var j =0; j <= i; j++){%>
 						/<%=categories[j].replace(new RegExp(' ', 'g'), '-').toLowerCase()%>
 					<%}%>
-						/1"><%=categories[i]%></a></li>
+						/1?<%=params%>"><%=categories[i]%></a></li>
 
 				<%}%>
 			</ul>
@@ -73,7 +74,8 @@
 			        <ul class="list-group">
 			         <% subcats.forEach(function(subcategory) { %>
 			          	<% var subcatURL = subcategory.replace(new RegExp(' ', 'g'), '-').toLowerCase();%>
-						 <li class="list-group-item"><a href="./<%=subcatURL%>/1"><%=subcategory%></a></li>
+			          	<%var params = url.substring(url.indexOf('?')+1);%>
+						 <li class="list-group-item"><a href="./<%=subcatURL%>/1?<%=params%>"><%=subcategory%></a></li>
             		  <% }); %>
 			        </ul>
 			      </div>
@@ -81,7 +83,26 @@
 			  </div>
 			  <%}%>
 
-			<p class = "results">Browsing <%=start+1%>-<%=start+items.length%> of <%=count%> listings</p>
+			<p class = "result pull-left">Browsing <%=start+1%>-<%=start+items.length%> of <%=count%> listings</p>
+
+			<!-- Single button -->
+			<div class="btn-group pull-right">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Sort <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li><a href="?sortMethod=timestamp&sortOrder=-1">Newest First</a></li>
+			    <li><a href="?sortMethod=timestamp&sortOrder=1">Oldest First</a></li>
+			    <li><a href="?sortMethod=price&sortOrder=1">Lowest Price</a></li>
+			    <li><a href="?sortMethod=price&sortOrder=-1">Highest Price</a></li>
+			    <li><a href="?sortMethod=stock&sortOrder=-1">Most Stock First</a></li>
+			     <li><a href="?sortMethod=stock&sortOrder=1">Least Stock First</a></li>
+			    <li><a href="?sortMethod=title&sortOrder=1">A-Z</a></li>
+			    <li><a href="?sortMethod=title&sortOrder=-1">Z-A</a></li>
+			  </ul>
+			</div>
+
+			<div class ="row"></div>
 
             <% items.forEach(function(item) { %>
             <div class="col-lg-3 col-md-4 col-xs-12" id = entry>
@@ -102,7 +123,8 @@
 
 		<ul class="pagination">
 			<% for (var i =0; i < count/20; i++){%>
-				<li><a href="./<%=i+1%>"><%=i+1%></a></li>
+				<%var params = url.substring(url.indexOf('?')+1);%>
+				<li><a href="./<%=i+1%>?<%=params%>"><%=i+1%></a></li>
 			<%}%>
 		</ul>
 

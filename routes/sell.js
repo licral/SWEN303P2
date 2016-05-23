@@ -26,27 +26,30 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/add_item', function(req, res){
-    var a = new A();
-    a.title = req.body.itemName;
-    a.description = req.body.description;
-    a.price = req.body.price;
-    a.user = req.cookies.isLoggedIn;
-    a.timestamp = new Date();
-    a.stock = req.body.quantity;
-    //a.category = req.body.category;
-    a.unitsSold = 0;
-    a.MoneyMade = 0;
-    a.category = [req.body.category1Sel, req.body.category2Sel, req.body.category3Sel];
-    // ADD REVIEWS
-    a.image.data = req.file.buffer;
-    a.image.contentType = 'image/jpg';
-    console.log(a);
-    a.save(function(err){
-        if(err) throw err;
-        console.log('Item added to database');
+    for (var i =0 ; i < 100; i++){
+        var a = new A();
+        a.title = req.body.itemName + ' '  + i;
+        a.description = req.body.description;
+        a.price = req.body.price;
+        a.user = req.cookies.isLoggedIn;
+        a.timestamp = new Date();
+        a.stock = req.body.quantity;
+        //a.category = req.body.category;
+        a.unitsSold = 0;
+        a.MoneyMade = 0;
+        a.category = [req.body.category1Sel, req.body.category2Sel, req.body.category3Sel];
+        // ADD REVIEWS
+        a.image.data = req.file.buffer;
+        a.image.contentType = 'image/jpg';
+        console.log(a);
+        a.save(function(err){
+            if(err) throw err;
+            console.log('Item added to database');
 
-        res.redirect("/sell/success");
-    });
+            
+        });
+    }
+    res.redirect("/sell/success");
 });
 
 router.get('/success', function(req, res){
