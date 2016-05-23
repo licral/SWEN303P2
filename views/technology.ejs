@@ -37,6 +37,14 @@
 
 	<!-- Creates the menubar as defined in menubar-src -->
 	<% include include/menubar.ejs %>
+	<%var params = "";%>
+	<%if(url.indexOf('?') > -1) {%>
+	<%params = url.substring(url.indexOf('?')+1);%>
+	<%}%>
+	<%console.log(url);%>
+	<%console.log(url.indexOf('?'));%>
+	<%console.log(params)%>
+
 
 
     <!--Upload some images via sell then check this out! -->
@@ -52,12 +60,7 @@
 			<ul class="breadcrumb">
 				<li><a href="/">Home</a></li>
 				<% for (var i = 0; i < categories.length; i++){%>
-				<%var params = url.substring(url.indexOf('?')+1);%>
-					<li><a href="/browse
-					<% for (var j =0; j <= i; j++){%>
-						/<%=categories[j].replace(new RegExp(' ', 'g'), '-').toLowerCase()%>
-					<%}%>
-						/1?<%=params%>"><%=categories[i]%></a></li>
+					<li><a href="/browse<% for (var j =0; j <= i; j++){%>/<%=categories[j].replace(new RegExp(' ', 'g'), '-').toLowerCase()%><%}%>/1?<%=params%>"><%=categories[i]%></a></li>
 
 				<%}%>
 			</ul>
@@ -74,7 +77,6 @@
 			        <ul class="list-group">
 			         <% subcats.forEach(function(subcategory) { %>
 			          	<% var subcatURL = subcategory.replace(new RegExp(' ', 'g'), '-').toLowerCase();%>
-			          	<%var params = url.substring(url.indexOf('?')+1);%>
 						 <li class="list-group-item"><a href="./<%=subcatURL%>/1?<%=params%>"><%=subcategory%></a></li>
             		  <% }); %>
 			        </ul>
@@ -123,7 +125,6 @@
 
 		<ul class="pagination">
 			<% for (var i =0; i < count/20; i++){%>
-				<%var params = url.substring(url.indexOf('?')+1);%>
 				<li><a href="./<%=i+1%>?<%=params%>"><%=i+1%></a></li>
 			<%}%>
 		</ul>

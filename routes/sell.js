@@ -26,7 +26,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/add_item', function(req, res){
-    for (var i =0 ; i < 100; i++){
         var a = new A();
         a.title = req.body.itemName + ' '  + i;
         a.description = req.body.description;
@@ -45,11 +44,9 @@ router.post('/add_item', function(req, res){
         a.save(function(err){
             if(err) throw err;
             console.log('Item added to database');
-
+            res.redirect("/sell/success");
             
         });
-    }
-    res.redirect("/sell/success");
 });
 
 router.get('/success', function(req, res){

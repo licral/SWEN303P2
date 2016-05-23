@@ -14,12 +14,11 @@
         <% include include/menubar.ejs %>
 
         <ul class="breadcrumb">
-
-            <% category.forEach(function(subcat) { %>
-            <li><a href="#"><%=subcat%></a></li>
-            <% }); %>
-
-        </ul>
+                <li><a href="/">Home</a></li>
+                <% for (var i = 0; i < category.length; i++){%>
+                    <li><a href="/browse<% for (var j =0; j <= i; j++){%>/<%=category[j].replace(new RegExp(' ', 'g'), '-').toLowerCase()%><%}%>/1"><%=category[i]%></a></li>
+                <%}%>
+            </ul>
 
         <!-- Page Content -->
         <div class="container">
