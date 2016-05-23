@@ -40,55 +40,48 @@
         <!-- Creates the menubar as defined in menubar-src -->
         <% include include/menubar.ejs %>
 
-        <ul class="breadcrumb">
-
-            <% item.category.forEach(function(subcat) { %>
-            <li><a href="#"><%=subcat%></a></li>
-            <% }); %>
-
-        </ul>
-
         <!-- Page Content -->
         <div class="container">
             <img class="img-responsive item-image" src="../browse/image/<%= id %>" width="30%" alt="">
-            <div class="item-info">
-                <fieldset class="form-group">
-                    <label for="itemName">Item Name</label>
-                    <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" value=<%= page %> required>
-                    <small class="text-muted">e.g. Green T-shirt</small>
-                </fieldset>
-
-                <!-- Item Category -->
-                <fieldset class="form-group">
-                    <label for="category">Item Category</label>
-                    <select id="category1Sel" name="category1Sel" size="1">
-                        <option value="<%= item.category[0]%>" selected="selected"><%= item.category[0]%></option>
-                    </select>
-                    <select id="category2Sel" name="category2Sel" size="1">
-                        <option value="<%= item.category[1]%>" selected="selected"><%= item.category[1]%></option>
-                    </select>
-                    <select id="category3Sel" name="category3Sel" size="1" required>
-                        <option value="<%= item.category[2]%>" selected="selected"><%= item.category[2]%></option>
-                    </select>
-
-                </fieldset>
-                <!-- End of item category -->
-
-                <div class="left-pane">
-                    <!-- Price -->
-                    <fieldset class="form-group left">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" id="price" value="<%= item.price%>" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(<%= item.price%>)" onclick="startedTyping(<%= item.price%>)" required>
-                        <small class="text-muted">e.g. 25.00</small>
+            <form action="/editItem/saveChanges" method="POST" name = "itemForm">
+                <div class="item-info">
+                    <fieldset class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" value="<%= item.title %>" required>
+                        <small class="text-muted">e.g. Green T-shirt</small>
                     </fieldset>
-                    <!-- End of price -->
 
-                    <!-- Quantity -->
-                    <fieldset class="form-group left">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" placeholder="Enter item stock" name="quantity" min="1" step = "1" value="<%= item.stock%>" onkeypress="startedTyping(<%= item.stock%>)" onclick="startedTyping(<%= item.stock%>)" required>
-                        <small class="text-muted">e.g. 2</small>
+                    <!-- Item Category -->
+                    <fieldset class="form-group">
+                        <label for="category">Item Category</label>
+                        <select id="category1Sel" name="category1Sel" size="1">
+                            <option value="<%= item.category[0]%>" selected="selected"><%= item.category[0]%></option>
+                        </select>
+                        <select id="category2Sel" name="category2Sel" size="1">
+                            <option value="<%= item.category[1]%>" selected="selected"><%= item.category[1]%></option>
+                        </select>
+                        <select id="category3Sel" name="category3Sel" size="1" required>
+                            <option value="<%= item.category[2]%>" selected="selected"><%= item.category[2]%></option>
+                        </select>
+
                     </fieldset>
+                    <!-- End of item category -->
+
+                    <div class="left-pane">
+                        <!-- Price -->
+                        <fieldset class="form-group left">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control" id="price" value="<%= item.price%>" placeholder="Enter item price" name="price" min="0" onkeypress="startedTyping(<%= item.price%>)" onclick="startedTyping(<%= item.price%>)" required>
+                            <small class="text-muted">e.g. 25.00</small>
+                        </fieldset>
+                        <!-- End of price -->
+
+                        <!-- Quantity -->
+                        <fieldset class="form-group left">
+                            <label for="quantity">Stock</label>
+                            <input type="number" class="form-control" id="quantity" placeholder="Enter item stock" name="quantity" min="1" step = "1" value="<%= item.stock%>" onkeypress="startedTyping(<%= item.stock%>)" onclick="startedTyping(<%= item.stock%>)" required>
+                            <small class="text-muted">e.g. 2</small>
+                        </fieldset>
                     <!-- End of quantity -->
                     </div>
                     <!-- Item description -->
@@ -97,9 +90,11 @@
                         <textarea class="form-control" id="description" rows="5" placeholder="Type your item description here" name="description" onkeypress="startedTyping(<%= item.description%>)" required><%= item.description%></textarea>
                     </fieldset>
                     <!-- End of item description -->
-
+                    <input type="hidden" name="Itemid"  id="Itemid" value="<%=item._id%>">
+                    <a href="/account<%=item._id%>" role="button" class="btn btn-default btn-lg submit pull-right">Cancel</a>
                     <button type="submit" class="btn btn-default btn-lg submit pull-right">Save Changes</button>
-            </div>
+                </div>
+            </form>
         </div>
     </body>
 </html>
