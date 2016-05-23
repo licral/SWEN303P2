@@ -41,9 +41,6 @@
 	<%if(url.indexOf('?') > -1) {%>
 	<%params = url.substring(url.indexOf('?')+1);%>
 	<%}%>
-	<%console.log(url);%>
-	<%console.log(url.indexOf('?'));%>
-	<%console.log(params)%>
 
 
 
@@ -116,6 +113,7 @@
                 <p class = item><%= item.title %></p>
                 <p class = stock>In Stock: <%= item.stock %></p>
                 <p class =price>$<%= item.price %></p>
+                <button type="button" class="btn btn-success btn-sml fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
             </div>
             <% }); %>
 

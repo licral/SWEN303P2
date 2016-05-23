@@ -82,7 +82,7 @@ router.get('/:cat/:page', function(req, res){
     Item.find({category:{'$regex': cat,$options:'i'}}).skip(skipVal).limit(20).sort(sortQuery).exec(function(err, items){
         Item.count({category:{'$regex': cat,$options:'i'}}, function(err, count){
             if (err) throw err;
-            res.render('technology', {
+            res.render('browse', {
                 title: cat,
                 page : 'Browse ' + cat,
                 items:  items,
@@ -126,7 +126,7 @@ router.get('/:cat/:subcat/:page', function(req, res){
     Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort(sortQuery).exec(function(err, items){
         Item.count({category: {$all : cats}}, function(err, count){
             if (err) throw err;
-            res.render('technology', {
+            res.render('browse', {
                 title: cats[1],
                 page : 'Browse ' + cats[1],
                 items:  items,
@@ -175,7 +175,7 @@ router.get('/:cat/:subcat/:subsubcat/:page', function(req, res){
     Item.find({category: {$all : cats}}).skip(skipVal).limit(20).sort(sortQuery).exec(function(err, items){
         Item.count({category: {$all : cats}}, function(err, count){
             if (err) throw err;
-            res.render('technology', {
+            res.render('browse', {
                 title: cats[2],
                 page : 'Browse ' + cats[2],
                 items:  items,

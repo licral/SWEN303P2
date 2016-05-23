@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/add_item', function(req, res){
         var a = new A();
-        a.title = req.body.itemName + ' '  + i;
+        a.title = req.body.itemName;
         a.description = req.body.description;
         a.price = req.body.price;
         a.user = req.cookies.isLoggedIn;

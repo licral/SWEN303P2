@@ -15,6 +15,11 @@
 <!-- Creates the menubar as defined in menubar-src -->
 <% include include/menubar.ejs %>
 
+<%var params = "";%>
+    <%if(url.indexOf('sort') > -1) {%>
+    <%params = url.substring(url.indexOf('sort'));%>
+    <%}%>
+
 <!-- Page Content -->
 <div class="container">
     <h1><%= page %></h1>
@@ -23,24 +28,49 @@
 
     <div class="row">
         <% if(items.length == 0){ %>
-            <p class = "results">No Search Results for '<%= query %>'</p>
+            <p class = "result pull-left">No Search Results for '<%= query %>'</p>
         <%} else {%>
-            <p class = "results">Browsing search results <%=start+1%>-<%=start+items.length%> of <%=count%> listings</p>
-            <% items.forEach(function(item) { %>
+            <p class = "result pull-left">Browsing search results <%=start+1%>-<%=start+items.length%> of <%=count%> listings</p>
+        <% } %>
+
+            <!-- Single button -->
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="?query=<%=query%>&sortMethod=timestamp&sortOrder=-1">Newest First</a></li>
+                <li><a href="?query=<%=query%>&sortMethod=timestamp&sortOrder=1">Oldest First</a></li>
+                <li><a href="?query=<%=query%>&sortMethod=price&sortOrder=1">Lowest Price</a></li>
+                <li><a href="?query=<%=query%>&sortMethod=price&sortOrder=-1">Highest Price</a></li>
+                <li><a href="?query=<%=query%>&sortMethod=stock&sortOrder=-1">Most Stock First</a></li>
+                 <li><a href="?query=<%=query%>&sortMethod=stock&sortOrder=1">Least Stock First</a></li>
+                <li><a href="?query=<%=query%>&sortMethod=title&sortOrder=1">A-Z</a></li>
+                <li><a href="?query=<%=query%>&sortMethod=title&sortOrder=-1">Z-A</a></li>
+              </ul>
+            </div>
+
+            <div class ="row"></div>
+             <% items.forEach(function(item) { %>
                 <div class="col-lg-3 col-md-4 col-xs-12" id = entry>
                     <a class="entry" href="/browse/item/<%= item._id %>">
                         <div class="image-wrap">
-                            <img src="/browse/image/<%= item._id %>" alt="">
-                        </div>
+                       <img src="/browse/image/<%= item._id %>" alt="">
+                           </div>
                     </a>
                     <p class = item><%= item.title %></p>
                     <p class = stock>In Stock: <%= item.stock %></p>
                     <p class =price>$<%= item.price %></p>
-                    <button type="button" class="btn btn-success btn-lg fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
+                    <button type="button" class="btn btn-success btn-sml fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
                 </div>
             <% }); %>
-        <% } %>
     </div>
+
+        <ul class="pagination">
+            <% for (var i =0; i < count/20; i++){%>
+               <li><a href="<%=i+1%>?query=<%=query%>&<%=params%>"><%=i+1%></a>
+            <%}%>
+        </ul>
 </div>
 </body>
 </html>

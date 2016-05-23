@@ -176,7 +176,7 @@ label.login{
     border-radius: 5px;
     /*border-color: #555;*/
     padding:0px;
-    height:300px !important;
+    height:auto;
 }
 .image-wrap {
     height: 250px;

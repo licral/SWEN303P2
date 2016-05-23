@@ -34,9 +34,9 @@
                                 </div>
                             </a>
                             <p class = item><%= item.title %></p>
-                            <button type="button" class="btn btn-success btn-lg fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
+                            <button type="button" class="btn btn-success btn-sml fav-button" onclick="addToCart(<%=JSON.stringify(item.id)%>)">Add to cart</button>
                             <br>
-                            <button type="button" class="btn btn-default fav-button" onclick="removeFromFavourites(<%=JSON.stringify([item.id, item.title, "fav"])%>)">
+                            <button type="button" class="btn btn-default btn-xs fav-button" onclick="removeFromFavourites(<%=JSON.stringify([item.id, item.title, "fav"])%>)">
                                 Remove from Favourites
                             </button>
                         </div>
