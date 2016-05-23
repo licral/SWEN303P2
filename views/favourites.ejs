@@ -9,9 +9,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script><% include include/buyfav.js %></script>
+        <script><% include include/jqCenterImage.js %></script>
 
         <!-- Creates the menubar as defined in menubar-src -->
         <% include include/menubar.ejs %>
+
 
         <!-- Page Content -->
         <div class="container">
@@ -25,7 +27,9 @@
                         <div class="col-sm-6 col-md-4 fav-item">
                             <div class="thumbnail">
                                 <a class="entry" href="../browse/item/<%= item.id %>">
-                                    <img class="img-responsive" src="../browse/image/<%= item.id %>" alt="">
+                                    <div class="image-wrap">
+                                        <img src="../browse/image/<%= item.id %>" alt="">
+                                    </div>
                                 </a>
                                 <div class="caption">
                                     <h3><%= item.title %></h3>
