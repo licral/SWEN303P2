@@ -45,8 +45,7 @@ router.post('/saveChanges', function(req, res){
                     "title": req.body.itemName,
                     "description": req.body.description,
                     "stock": req.body.quantity,
-                    "price": req.body.price,
-                    "category": [req.body.category1Sel, req.body.category2Sel, req.body.category3Sel]
+                    "price": req.body.price
                 }
             });
 

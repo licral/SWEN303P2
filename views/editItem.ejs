@@ -8,34 +8,6 @@
     <body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script>
-            <% include include/categories.js %>
-            window.onload = function () {
-                var category1Sel = document.getElementById("category1Sel"),
-                        category2Sel = document.getElementById("category2Sel"),
-                        category3Sel = document.getElementById("category3Sel");
-                for (var cat1 in categories) {
-                    category1Sel.options[category1Sel.options.length] = new Option(cat1, cat1, cat1);
-                }
-                category1Sel.onchange = function () {
-                    category2Sel.length = 1; // remove all options bar first
-                    category3Sel.length = 1; // remove all options bar first
-                    if (this.selectedIndex < 1) return; // done
-                    for (var cat2 in categories[this.value]) {
-                        category2Sel.options[category2Sel.options.length] = new Option(cat2, cat2);
-                    }
-                }
-                category1Sel.onchange(); // reset in case page is reloaded
-                category2Sel.onchange = function () {
-                    category3Sel.length = 1; // remove all options bar first
-                    if (this.selectedIndex < 1) return; // done
-                    var cat3 = categories[category1Sel.value][this.value];
-                    for (var i = 0; i < cat3.length; i++) {
-                        category3Sel.options[category3Sel.options.length] = new Option(cat3[i], cat3[i]);
-                    }
-                }
-            }
-        </script>
 
         <!-- Creates the menubar as defined in menubar-src -->
         <% include include/menubar.ejs %>
@@ -50,22 +22,6 @@
                         <input type="text" class="form-control" id="itemName" placeholder="Enter item name" name="itemName" value="<%= item.title %>" required>
                         <small class="text-muted">e.g. Green T-shirt</small>
                     </fieldset>
-
-                    <!-- Item Category -->
-                    <fieldset class="form-group">
-                        <label for="category">Item Category</label>
-                        <select id="category1Sel" name="category1Sel" size="1">
-                            <option value="<%= item.category[0]%>" selected="selected"><%= item.category[0]%></option>
-                        </select>
-                        <select id="category2Sel" name="category2Sel" size="1">
-                            <option value="<%= item.category[1]%>" selected="selected"><%= item.category[1]%></option>
-                        </select>
-                        <select id="category3Sel" name="category3Sel" size="1" required>
-                            <option value="<%= item.category[2]%>" selected="selected"><%= item.category[2]%></option>
-                        </select>
-
-                    </fieldset>
-                    <!-- End of item category -->
 
                     <div class="left-pane">
                         <!-- Price -->
