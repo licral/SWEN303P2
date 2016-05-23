@@ -46,6 +46,7 @@ router.get('/', function(req, res, next) {
                             }
                         });
                 }
+                db.collection('users').update({"username": username}, { $set: { "items_In_Cart":[] }});
                 res.render('placeOrder', {
                     title: 'Express',
                     page: 'Place Order'
