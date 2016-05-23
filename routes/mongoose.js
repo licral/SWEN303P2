@@ -24,7 +24,9 @@ var schema = new Schema({
     timestamp: Date,
     stock: Number,
     category : [String],
-    reviews : Array
+    reviews : Array,
+    unitsSold : Number,
+    MoneyMade : Number
 });
 
 module.exports = mongoose.model('item', schema);
