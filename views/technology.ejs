@@ -10,6 +10,25 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+	<script>
+
+		//http://demo.solemone.de/overflow-image-with-vertical-centering-for-responsive-web-design/
+		$(document).ready(function() {
+	 
+	    var imageHeight, wrapperHeight, overlap, container = $('.image-wrap');  
+	 
+	    function centerImage() {
+	        imageHeight = container.find('img').height();
+	        wrapperHeight = container.height();
+	        overlap = (wrapperHeight - imageHeight) / 2;
+	        container.find('img').css('margin-top', overlap);
+	    }
+	     
+	    $(window).on("load resize", centerImage);
+	 
+	});
+	</script>
+
 	<%String.prototype.capitalize = function() {
 		return this.charAt(0).toUpperCase() + this.slice(1);
 	}%>
@@ -41,10 +60,12 @@
 
             <% items.forEach(function(item) { %>
             <div class="col-lg-3 col-md-4 col-xs-12 thumb" id = entry>
-                <p class = item><%= item.title %></p>
                 <a class="entry" href="/browse/item/<%= item._id %>">
-                    <img class="img-responsive" src="/browse/image/<%= item._id %>" alt="">
+                	<div class="image-wrap">
+                   <img src="/browse/image/<%= item._id %>" alt="">
+            		   </div>
                 </a>
+                <p class = item><%= item.title %></p>
                 <p class = stock>In Stock: <%= item.stock %></p>
                 <p class =price>Price: $<%= item.price %></p>
             </div>
