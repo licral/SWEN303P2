@@ -39,8 +39,28 @@
     function logout() {
         $.post('/account/logout');
     }
+
 </script>
 
+<% 
+
+var categories = {
+    "Clothing": {
+        "Men": ["Shirts", "Hoodies & Sweatshirts", "Jackets & Coats", "Sweaters", "Costumes", "Activewear", "Trousers", "Socks", "Suits & Sport Coats", "Vests", "Jeans", "Shorts", "Underwear", "Swim Trunks", "Pyjamas & Robes", "Ponchos", "Kilts"],
+        "Women": ["Tops & Tees", "Dresses", "Lingerie", "Jackets & Coats", "Skirts", "Sweaters", "Hoodies & Sweatshirts", "Swimwear", "Costumes", "Trousers & Capris", "Socks & Hosiery", "Shorts & Skorts", "Pyjamas & Robes", "Activewear", "Leggings", "Jeans", "Ponchos", "Jumpsuits & Rompers", "Blazers", "Suits", "Bodysuits", "Overalls"],
+        "Gender diverse": ["Tops & Tees", "Lingerie", "Jackets & Coats", "Skirts", "Sweaters", "Hoodies & Sweatshirts", "Swimwear", "Costumes", "Trousers & Capris", "Shorts & Skorts", "Pyjamas & Robes", "Jeans", "Ponchos", "Jumpsuits & Rompers", "Blazers", "Suits", "Bodysuits", "Overalls"],
+        "Children": ["Baby Clothes", "Tops", "Bodysuits", "Trousers", "Costumes", "Clothing Sets", "Sweaters", "Hoodies & Sweatshirts", "Jackets & Coats", "Socks", "Shorts", "Activewear", "Pyjamas & Robes", "Underwear", "Swimwear", "Footies & Rompers", "Suits", "Ponchos", "Vests"]
+    },
+    "Technology": {
+        "Gadgets": ["Binoculars", "Cameras"],
+        "Computers": ["Desktops", "Laptops"]
+    },
+    "Arts and Crafts": {
+        "Jewellery": ["Earrings", "Necklaces", "Rings"],
+        "Fabric": ["Quilts", "Embroidery", "Crochet"],
+        "Craft supplies": ["Knitting", "Bakeware", "Jewellery and beading"]
+    }
+} %>
 <!-- The actual html code -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -62,9 +82,10 @@
                 <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/browse/clothing/1">Clothing</a></li>
-						<li><a href="/browse/technology/1">Technology</a></li>
-						<li><a href="/browse/arts_and_crafts/1">Arts and Craft</a></li>
+                    <% for(var cat in categories) {%>
+                    <% var catURL = cat.replace(new RegExp(' ', 'g'), '-').toLowerCase();%>
+                       <li><a href="/browse/<%= catURL%>/1"><%= cat %></a></li>
+                    <% } %>
 					</ul>
 				</li>
                 <li class="loggedInButtons"><a href="/sell">Sell</a></li>
